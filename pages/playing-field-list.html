@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
+<link rel="stylesheet" href="../css/style.css" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,24 @@
 <body>
     <header>
         <h1>DOSIR Warszawa</h1>
-        <img src="images/logo.png" alt="DOSIR Warszawa Logo">
+        <img src="../images/logo.png" alt="DOSIR Warszawa Logo">
     </header>
     <nav>
         <ul>
             <li><a href="">Strona główna</a></li>
             <li><a href="">Gracze</a></li>
-            <li><a href="">Obiekty sportowe</a></li>
-            <li><a href="">Dołącz gracza do eventu</a></li>
+            <li><a href=""class="active">Obiekty sportowe</a></li>
+            <li><a href="">Event</a></li>
         </ul>
     </nav>
     <main>
         <h2>Gracze</h2>
-        <table>
+        <table class="table-list">
             <thead>
                 <tr>
                     <th>Nazwa</th>
                     <th>Adres</th>
-                    <th>Łazienka</th>
+                    <th>Szatnia</th>
                     <th>Akcje</th>
                 </tr>
             </thead>
@@ -35,15 +36,15 @@
                     <td>Ossowskiego 2</td>
                     <td>false</td>
                     <td>
-                        <ul>
+                        <ul class="list-actions">
                             <li>
-                                <a href="">Szczegóły</a>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
                             </li>
                             <li>
-                                <a href="">Edytuj</a>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
                             </li>
                             <li>
-                                <a href="">Usuń</a>
+                                <a href=""  class="list-actions-button-delete">Usuń</a>
                             </li>
                         </ul>
                     </td>
@@ -53,15 +54,15 @@
                     <td>Szanajcy 2</td>
                     <td>true</td>
                     <td>
-                        <ul>
+                        <ul class="list-actions">
                             <li>
-                                <a href="">Szczegóły</a>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
                             </li>
                             <li>
-                                <a href="">Edytuj</a>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
                             </li>
                             <li>
-                                <a href="">Usuń</a>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
                             </li>
                         </ul>
                     </td>
@@ -71,15 +72,15 @@
                     <td>Grochowska 2</td>
                     <td>true</td>
                     <td>
-                        <ul>
+                        <ul class="list-actions">
                             <li>
-                                <a href="">Szczegóły</a>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
                             </li>
                             <li>
-                                <a href="">Edytuj</a>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
                             </li>
                             <li>
-                                <a href="">Usuń</a>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
                             </li>
                         </ul>
                     </td>
@@ -87,7 +88,7 @@
                 
             </tbody>
         </table>
-        <p><a href="">Dodaj nowego obiekt sportowy</a></p>
+        <p><a href="" class="button-add">Dodaj nowego obiekt sportowy</a></p>
         
     </main>
     <footer>
