@@ -20,35 +20,37 @@
         </ul>
     </nav>
     <main>
-        <div>
-            <label for="player">Gracz:</label>
-            <select>
-                <option>Jan Nowak</option>
-                <option>Paweł Kowalski</option>
-            </select>
-        </div>
-        <div>
-            <label for="playing-field">Obiekt sportowy:</label>
-            <select>
-                <option>Hala sportowa praga pn</option>
-                <option>Orlik targówek 2</option>
-            </select>
-        </div>
-        <div>
-            <label for="begin-time">Początek:</label>
-            <input type="datetime-local" name="begin-time" value="2020-06-12T19:30" id="begin-time" disabled/>
-        </div>
-        <div>
-            <label for="end-time">Koniec:</label>
-            <input type="datetime-local" name="end-time" value="2020-06-12T21:30" id="end-time" disabled/>
-        </div>
-        <div>
-            <label for="max-number-pf-player">Ilość graczy:</label>
-            <input type="number" name="max-number-pf-player" value="10" id="max-number-pf-player" disabled/>
-        </div>
-        <div>
-            <a href="">Edytuj</a> 
-            <a href="">Powrót</a>    
+        <form class="form">
+            <div class="form-group">
+                <label for="player">Gracz:</label>
+                <select>
+                    <option>Jan Nowak</option>
+                    <option>Paweł Kowalski</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="playing-field">Obiekt sportowy:</label>
+                <select>
+                    <option>Hala sportowa praga pn</option>
+                 <option>Orlik targówek 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="begin-time">Początek:</label>
+                <input type="datetime-local" name="begin-time" value="2020-06-12T19:30" id="begin-time" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="end-time">Koniec:</label>
+                <input type="datetime-local" name="end-time" value="2020-06-12T21:30" id="end-time" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="max-number-pf-player">Ilość graczy:</label>
+                <input type="number" name="max-number-pf-player" value="10" id="max-number-pf-player" disabled/>
+            </div>
+        </form>
+        <div class="form-buttons">
+            <a href="" class="list-actions-button-edit">Edytuj</a> 
+            <a href="" class="list-actions-button-details">Powrót</a>    
         </div> 
 
         

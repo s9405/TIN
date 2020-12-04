@@ -21,22 +21,22 @@
     </nav>
     <main>
         <h2>Nowy gracz</h2>
-        <form>
-            <div>
+        <form class="form">
+            <div class="form-group">
                 <label for="firstName">Imię:<abbr title="required" aria-label="required">*</abbr></label>
                 <input type="text" name="firstName" id="firstName" />
             </div>
-            <div>
+            <div class="form-group">
                 <label for="lastName">Nazwisko:<abbr title="required" aria-label="required">*</abbr></label>
                 <input type="text" name="lastName" id="lastName" />
             </div>
-            <div>
+            <div class="form-group">
                 <label for="email">E-mail:<abbr title="required" aria-label="required">*</abbr></label>
                 <input type="email" name="email" id="email" />
             </div>
-            <div>
-                <input type="submit" value="Dodaj" />
-                <a href="">Anuluj</a>    
+            <div class="form-bottons">
+                <input type="submit" value="Dodaj" class="form-button-submit"/>
+                <a href="" class="form-button-cancel">Anuluj</a>    
             </div> 
 
         </form>

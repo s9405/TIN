@@ -20,20 +20,24 @@
         </ul>
     </nav>
     <main>
-        <h2>Szczegóły gracza</h2>
-        <div>
-            <label for="name">Nazwa:</label>
-            <input type="text" name="name" value="Orlik targówek 2" id="name" disabled/>
-        </div>
-        <div>
-            <label for="adress">Adres:</label>
-            <input type="text" name="adress" value="Ossowskiego 2" id="adress" disabled/>
-        </div>
-        <div>
-            <label for="cloakroom">Szatnia:</label>
-            <input type="text" name="cloakroom" value="true" id="cloakroom" disabled/>
-        </div>
-        <a href="">Edytuj</a> 
+        <h2>Szczegóły obiektu sportowego</h2>
+        <form class="form">
+            <div class="form-group">
+                <label for="name">Nazwa:</label>
+                <input type="text" name="name" value="Orlik targówek 2" id="name" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="adress">Adres:</label>
+                <input type="text" name="adress" value="Ossowskiego 2" id="adress" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="cloakroom">Szatnia:</label>
+                <input type="text" name="cloakroom" value="true" id="cloakroom" disabled/>
+            </div>
+            <div class="form-buttons">
+                <a href="" class="list-actions-button-edit">Edytuj</a> 
+            </div>
+        </form>
         <h2>Szczegóły eventów</h2>
         <table class="table-list">
             <thead>
@@ -54,8 +58,8 @@
                 
             </tbody>
         </table>
-        <div>
-            <a href="">Powrót</a>    
+        <div class="form-buttons">
+            <a href="" class="list-actions-button-details">Powrót</a>    
         </div> 
     </main>
     <footer>

@@ -21,19 +21,23 @@
     </nav>
     <main>
         <h2>Szczegóły gracza</h2>
-        <div>
-            <label for="firstName">Imię:</label>
-            <input type="text" name="firstName" value="Jan" id="firstName" disabled/>
-        </div>
-        <div>
-            <label for="lastName">Nazwisko:</label>
-            <input type="text" name="lastName" value="Nowak" id="lastName" disabled/>
-        </div>
-        <div>
-            <label for="email">E-mail:</label>
-            <input type="email" name="email" value="jan.nowak@gmail.com" id="email" disabled/>
-        </div>
-        <a href="">Edytuj</a>  
+        <form class="form">
+            <div class="form-group">
+                <label for="firstName">Imię:</label>
+                <input type="text" name="firstName" value="Jan" id="firstName" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nazwisko:</label>
+                <input type="text" name="lastName" value="Nowak" id="lastName" disabled/>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" value="jan.nowak@gmail.com" id="email" disabled/>
+            </div>
+            <div class="form-buttons">
+                <a href="" class="list-actions-button-edit">Edytuj</a>
+            </div>
+        </form>  
         <h2>Szczegóły eventów</h2>
         <table class="table-list">
             <thead>
@@ -66,8 +70,8 @@
                 
             </tbody>
         </table>
-        <div>
-            <a href="">Powrót</a>    
+        <div class="form-buttons">
+            <a href="" class="list-actions-button-details">Powrót</a>    
         </div> 
     </main>
     <footer>
