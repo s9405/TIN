@@ -1,0 +1,40 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="../js/validationEventForm.js"></script>
+        <form class="form" novalidate onsubmit="return validateForm()">
+
+            <label for="player">Gracz:<abbr title="required" aria-label="required">*</abbr></label>
+            <select id="player">
+                <option>Jan Nowak</option>
+                <option>Paweł Kowalski</option>
+            </select>
+            <span id="errorPlayer" class="errors-text"></span>
+
+            <label for="playing-field">Obiekt sportowy:<abbr title="required" aria-label="required">*</abbr></label>
+            <select id="playingField">
+                <option>Hala sportowa praga pn</option>
+                <option>Orlik targówek 2</option>
+            </select>
+            <span id="errorPlayingField" class="errors-text"></span>
+
+            <label for="begin-time">Początek:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="datetime-local" name="begin-time" id="beginTime" />
+            <span id="errorBeginTime" class="errors-text"></span>
+
+            <label for="end-time">Koniec:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="datetime-local" name="end-time" id="endTime" />
+            <span id="errorEndTime" class="errors-text"></span>
+
+            <label for="max-number-of-player">Ilość graczy:<abbr title="required" aria-label="required">*</abbr></label>
+            <input type="number" name="max-number-of-player" id="MaxNumberOfPlayer" />
+            <span id="errorMaxNumberOfPlayer" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="/events" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+<%- include('../../fragments/footer.ejs') %>

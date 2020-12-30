@@ -1,0 +1,76 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Gracze</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Adres</th>
+                    <th>Szatnia</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Orlik targówek 2</td>
+                    <td>Ossowskiego 2</td>
+                    <td>false</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="playingFields/details" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hala sportowa praga pn</td>
+                    <td>Szanajcy 2</td>
+                    <td>true</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hala sportowa praga pd</td>
+                    <td>Grochowska 2</td>
+                    <td>true</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="form-buttons">
+            <p><a href="playingFields/add" class="button-add">Dodaj nowego obiekt sportowy</a></p>
+        </div>
+
+    </main>
+<%- include('../../fragments/footer.ejs') %>

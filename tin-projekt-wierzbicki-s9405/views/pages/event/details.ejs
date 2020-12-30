@@ -1,0 +1,40 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <form class="form">
+
+            <label for="player">Gracz:</label>
+            <select>
+                <option>Jan Nowak</option>
+                <option>Paweł Kowalski</option>
+            </select>
+            <span></span>
+
+            <label for="playing-field">Obiekt sportowy:</label>
+            <select>
+                <option>Hala sportowa praga pn</option>
+                <option>Orlik targówek 2</option>
+            </select>
+            <span></span>
+
+            <label for="begin-time">Początek:</label>
+            <input type="datetime-local" name="begin-time" value="2020-06-12T19:30" id="begin-time" disabled />
+            <span></span>
+
+            <label for="end-time">Koniec:</label>
+            <input type="datetime-local" name="end-time" value="2020-06-12T21:30" id="end-time" disabled />
+            <span></span>
+
+            <label for="max-number-pf-player">Ilość graczy:</label>
+            <input type="number" name="max-number-pf-player" value="10" id="max-number-pf-player" disabled />
+            <span></span>
+
+
+            <div class="form-buttons">
+                <a href="" class="list-actions-button-edit">Edytuj</a>
+                <a href="/events" class="list-actions-button-details">Powrót</a>
+            </div>
+        </form>
+
+
+    </main>
+<%- include('../../fragments/footer.ejs') %>

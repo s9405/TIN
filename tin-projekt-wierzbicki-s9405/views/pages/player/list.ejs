@@ -1,0 +1,76 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Gracze</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>E-mail</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jan</td>
+                    <td>Kowalski</td>
+                    <td>jan.kowalski@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="players/details" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pawel</td>
+                    <td>Nowak</td>
+                    <td>p.nowal@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Grzegorz</td>
+                    <td>Brzeczyszczykiewicz</td>
+                    <td>g.b@gmail.com</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="" class="list-actions-button-details">Szczegóły</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-edit">Edytuj</a>
+                            </li>
+                            <li>
+                                <a href="" class="list-actions-button-delete">Usuń</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="form-buttons">
+            <p><a href="players/add" class="button-add">Dodaj nowego gracza</a></p>
+        </div>
+
+    </main>
+<%- include('../../fragments/footer.ejs') %>

@@ -1,0 +1,58 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły gracza</h2>
+        <form class="form">
+
+            <label for="firstName">Imię:</label>
+            <input type="text" name="firstName" value="Jan" id="firstName" disabled />
+            <span id="errorFirstName" class="errors-text"></span>
+
+            <label for="lastName">Nazwisko:</label>
+            <input type="text" name="lastName" value="Nowak" id="lastName" disabled />
+            <span id="errorFirstName" class="errors-text"></span>
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" value="jan.nowak@gmail.com" id="email" disabled />
+            <span id="errorFirstName" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <a href="" class="list-actions-button-edit">Edytuj</a>
+            </div>
+        </form>
+        <h2>Szczegóły eventów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Nazwa obiektu</th>
+                    <th>Początek</th>
+                    <th>Koniec</th>
+                    <th>Ilość graczy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Orlik targówek 2</td>
+                    <td>2020-11-01 12:00</td>
+                    <td>2020-11-01 14:00</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Hala sportowa praga pn</td>
+                    <td>2020-10-01 12:00</td>
+                    <td>2020-10-01 14:00</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Hala sportowa praga pd</td>
+                    <td>2020-09-01 12:00</td>
+                    <td>2020-09-01 14:00</td>
+                    <td>8</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="form-buttons">
+            <a href="/players" class="list-actions-button-details">Powrót</a>
+        </div>
+    </main>
+<%- include('../../fragments/footer.ejs') %>
