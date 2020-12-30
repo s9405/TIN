@@ -216,11 +216,10 @@ abbr[title='required'] {
     font-size: 0.85em;
     line-height: 2.25rem;
     color: #c0392b;
-  }
+}
 
-  .form input.error-input,
-.form select.error-input {
-  border: 3px solid #e74c3c
+.form input.error-input, .form select.error-input {
+    border: 3px solid #e74c3c
 }
 
 @media all and (max-width: 720px) {
@@ -248,14 +247,12 @@ abbr[title='required'] {
         row-gap: unset;
         margin-left: unset;
     }
-
     .form .errors-text {
         margin-bottom: 1rem;
     }
     .form-buttons {
-        grid-column: 1 / span 1; 
+        grid-column: 1 / span 1;
     }
-
 }
 
 @media all and (max-width: 400px) {
