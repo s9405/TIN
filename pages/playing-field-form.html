@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationPlayingField.js"></script>
     <title>DOSIR Warszawa</title>
 </head>
 
@@ -23,19 +25,23 @@
     </nav>
     <main>
         <h2>Nowy obiekt sportowy</h2>
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm()">
 
             <label for="name">Nazwa:<abbr title="required" aria-label="required">*</abbr></label>
             <input type="text" name="name" id="name" />
+            <span id="errorName" class="errors-text"></span>
 
             <label for="adress">Adres:<abbr title="required" aria-label="required">*</abbr></label>
             <input type="text" name="adress" id="adress" />
+            <span id="errorAdress" class="errors-text"></span>
 
 
             <label for="cloackroom">Szatnia:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="cloackroom" id="cloackroom" />
+            <input type="text" name="cloackroom" id="cloackroom" placeholder="TAK lub NIE"/>
+            <span id="errorCloackroom" class="errors-text"></span>
 
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" value="Dodaj" class="form-button-submit" />
                 <a href="" class="form-button-cancel">Anuluj</a>
             </div>
