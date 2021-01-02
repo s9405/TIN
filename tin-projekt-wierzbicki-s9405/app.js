@@ -10,6 +10,7 @@ const playingFieldRouter = require('./routes/playingFieldRoute');
 const eventRouter = require('./routes/eventRoute');
 const playerApiRouter = require('./routes/api/PlayerApiRoute');
 const playingFieldApiRouter = require('./routes/api/PlayingFieldApiRoute');
+const eventApiRoute = require('./routes/api/EventApiRoute');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/playingfields', playingFieldRouter);
 app.use('/events', eventRouter);
 app.use('/api/players', playerApiRouter);
 app.use('/api/playingfields', playingFieldApiRouter);
+app.use('/api/events', eventApiRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
