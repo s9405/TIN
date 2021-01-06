@@ -42,7 +42,7 @@
             <tbody>
                 <% for (let e of player.events) { %>
                     <tr>
-                        <td><%= e.playingField.name %></td>
+                        <td><a href="/playingfields/details/<%= e.playingField._id %>"><%= e.playingField.name %></a></td>
                         <td><%= e.beginTime.toLocaleString() %></td>
                         <td><%= e.endTime.toLocaleString() %></td>
                         <td><%= e.maxNumberOfPlayer %></td>

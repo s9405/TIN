@@ -11,65 +11,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Orlik targówek 2</td>
-                    <td>Ossowskiego 2</td>
-                    <td>false</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="playingFields/details" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hala sportowa praga pn</td>
-                    <td>Szanajcy 2</td>
-                    <td>true</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hala sportowa praga pd</td>
-                    <td>Grochowska 2</td>
-                    <td>true</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
+                <% for (let pf of playingFields) { %>
+                    <tr>
+                        <td><%= pf.name %></td>
+                        <td><%= pf.adress %></td>
+                        <td><%= pf.cloackroom %></td>
+                        <td>
+                            <ul class="list-actions">
+                                <li><a href="/playingfields/details/<%=pf._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                                <li><a href="/playingfields/edit/<%=pf._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete">Usuń</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
         <div class="form-buttons">
-            <p><a href="playingFields/add" class="button-add">Dodaj nowego obiekt sportowy</a></p>
+            <p><a href="playingfields/add" class="button-add">Dodaj nowego obiekt sportowy</a></p>
         </div>
 
     </main>

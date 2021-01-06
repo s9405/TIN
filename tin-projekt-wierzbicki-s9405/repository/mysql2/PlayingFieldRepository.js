@@ -12,21 +12,21 @@ exports.getPlayingFields = () => {
     });
 };
 
-exports.getPlayingFieldById = (playingFieldId) => {
+exports.getPlayingFieldById = (pfId) => {
     const query = `SELECT pf._id as _id, pf.name, pf.adress, pf.cloackroom, e._id as event_id, 
         e.max_number_of_player, e.begin_time, p._id as p_id, e.end_time, p.firstName, p.lastName 
         FROM Playing_field pf
         left join Event e on pf._id = e.playing_field_id
         left join Player p on e.player_id = p._id
         where pf._id = ?`
-    return db.promise().query(query, [playingFieldId])
+    return db.promise().query(query, [pfId])
         .then( (results, fields) => {
         const firstRow = results[0][0];
         if(!firstRow) {
             return {};
         }
-        const playingField = {
-            _id: parseInt(playingFieldId),
+        const pf = {
+            _id: parseInt(pfId),
             name: firstRow.name,
             adress: firstRow.adress,
             cloackroom: firstRow.cloackroom,
@@ -46,10 +46,10 @@ exports.getPlayingFieldById = (playingFieldId) => {
                         lastName: row.lastName
                     }
                 };
-                playingField.events.push(event);
+                pf.events.push(event);
             }
         }
-        return playingField;
+        return pf;
     })
     .catch(err => {
         console.log(err);

@@ -1,30 +1,64 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <script type="application/javascript" src="../js/validationPlayingField.js"></script>
-        
-        <script></script>
-        <h2>Nowy obiekt sportowy</h2>
-        <form class="form" novalidate onsubmit="return validateForm()">
+        <script type="application/javascript" src="/js/validationPlayingField.js"></script>
+        <h2><%=pageTitle %></h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+            <input type="hidden" name="_id" value="<%= pf._id %>">
 
             <label for="name">Nazwa:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= pf.name %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorName" class="errors-text"></span>
 
             <label for="adress">Adres:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="adress" id="adress" />
+            <input type="text" name="adress" id="adress" placeholder="2-60 znaków" value="<%= pf.adress %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorAdress" class="errors-text"></span>
 
-
             <label for="cloackroom">Szatnia:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="cloackroom" id="cloackroom" placeholder="TAK lub NIE" />
+            <input type="text" name="cloackroom" id="cloackroom" placeholder="0 lub 1" value="<%= pf.cloackroom %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorCloackroom" class="errors-text"></span>
 
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a href="/playingfields/edit/<%= pf._id %>" class="list-actions-button-edit">Edytuj</a>
+                </div>
+            <% } %>
+
+            <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+                <h2>Szczegóły eventów</h2>
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Nazwisko gracza</th>
+                            <th>Początek</th>
+                            <th>Koniec</th>
+                            <th>Ilość graczy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let e of pf.events) { %>
+                            <tr>
+                                <td><a href="/players/details/<%= e.player._id%>"><%= e.player.lastName%></a></td>
+                                <td><%= e.beginTime.toLocaleString() %></td>
+                                <td><%= e.endTime.toLocaleString() %></td>
+                                <td><%= e.maxNumberOfPlayer%></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+            <% } %>
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
-                <input type="submit" value="Dodaj" class="form-button-submit" />
-                <a href="/playingFields" class="form-button-cancel">Anuluj</a>
+                <% if (formMode != 'showDetails') { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>"  />
+                    <a class="form-button-cancel" href="/playingfields">Anuluj</a>
+                <% } else { %>
+                    <a class="form-button-cancel" href="/playingfields">Powrót</a>
+                <% } %>
             </div>
-
         </form>
 
     </main>

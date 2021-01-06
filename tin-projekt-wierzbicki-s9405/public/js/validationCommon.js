@@ -90,6 +90,6 @@ function checkCloackroom(value) {
         return false;
     }
     value = value.toString().trim();
-    const re = /^([TAK]{3}|[NIE]{3})$/i;
+    const re = /^([0]{1}|[1]{1})$/i;
     return re.test(value);
 }

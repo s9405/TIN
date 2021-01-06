@@ -38,7 +38,7 @@ function validateForm() {
     } else if (!checkCloackroom(cloackroomInput.value)) {
         valid = false;
         cloackroomInput.classList.add("error-input");
-        errorCloackroom.innerText = "Pole powinno zawierać TAK lub NIE";
+        errorCloackroom.innerText = "Pole powinno zawierać 0 lub 1";
     }
 
     if (!valid) {
