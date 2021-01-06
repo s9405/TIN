@@ -14,11 +14,11 @@ exports.getPlayingFields = () => {
 
 exports.getPlayingFieldById = (playingFieldId) => {
     const query = `SELECT pf._id as _id, pf.name, pf.adress, pf.cloackroom, e._id as event_id, 
-        e.max_number_of_player, e.begin_time, pf._id as pf_id, e.end_time, p.firstName, p.lastName 
-        FROM Playing_field pf, Player p, Event e 
-        where pf._id = e.playing_field_id
-        and p._id = e.player_id 
-        and pf._id = ?`
+        e.max_number_of_player, e.begin_time, p._id as p_id, e.end_time, p.firstName, p.lastName 
+        FROM Playing_field pf
+        left join Event e on pf._id = e.playing_field_id
+        left join Player p on e.player_id = p._id
+        where pf._id = ?`
     return db.promise().query(query, [playingFieldId])
         .then( (results, fields) => {
         const firstRow = results[0][0];

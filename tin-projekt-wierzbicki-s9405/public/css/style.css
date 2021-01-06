@@ -68,12 +68,14 @@ footer {
 main h2 {
     border-bottom: 1px solid #7f8c8d;
     margin-bottom: 2rem;
+    grid-column: 1 / span 3;
 }
 
 .table-list {
     border-collapse: collapse;
     color: #2c3e50;
     width: 100%;
+    grid-column: 1 / span 3;
 }
 
 .table-list, .table-list th, .table-list td {
@@ -196,7 +198,7 @@ abbr[title='required'] {
 
 .form-buttons {
     margin-top: 2rem;
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 3;
 }
 
 .form-button-submit, .form-button-cancel {

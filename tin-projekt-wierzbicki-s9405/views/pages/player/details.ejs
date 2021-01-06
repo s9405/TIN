@@ -19,6 +19,7 @@
                 <a href="" class="list-actions-button-edit">Edytuj</a>
             </div>
         </form>
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
         <h2>Szczegóły eventów</h2>
         <table class="table-list">
             <thead>
@@ -48,11 +49,25 @@
                     <td>2020-09-01 14:00</td>
                     <td>8</td>
                 </tr>
-
+                <!--<% for (let e of player.events) { %>
+                    <tr>
+                        <td><a href="/playingfields/details/<%= e.event._id%>"><%e.event.name %></a></td>
+                        <td><%= e.maxNumberOfPlayer %></td>
+                        <td><%=e.beginTime.toISOString() %></td>
+                        <td><%=e.endTime.toISOString() %></td>
+                    </tr>
+                <% } %>-->
             </tbody>
         </table>
+        <% } %>
         <div class="form-buttons">
-            <a href="/players" class="list-actions-button-details">Powrót</a>
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+                <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                <a class="form-button-cancel" href="/players">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/players">Powrót</a>
+            <% } %>
         </div>
     </main>
 <%- include('../../fragments/footer.ejs') %>

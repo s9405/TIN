@@ -13,12 +13,13 @@ exports.getPlayers = () =>{
 };
 
 exports.getPlayerById = (playerId) => {
-    const query = `SELECT p._id as _id, p.firstName, p.lastName, p.email, e._id as event_id, 
-    e.max_number_of_player, e.begin_time, pf._id as pf_id, e.end_time, pf.name, pf.cloackroom 
-    FROM Player p, Playing_field pf, Event e 
-    where p._id = e.player_id
-    and pf._id = e.playing_field_id 
-    and p._id = ?`
+    const query = `SELECT p._id as _id, p.firstName, p.lastName, p.email,
+                 e._id as event_id, e.max_number_of_player, e.begin_time, e.end_time,
+                  pf._id as pf_id, pf.name, pf.cloackroom 
+                  FROM Player p 
+                  left join Event e on p._id = e.player_id 
+                  left join Playing_field pf on e.playing_field_id = pf._id 
+                  where p._id = ?`
 return db.promise().query(query, [playerId])
     .then( (results, fields) => {
         const firstRow = results[0][0];
