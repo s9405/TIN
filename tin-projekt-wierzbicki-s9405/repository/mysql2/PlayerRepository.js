@@ -110,11 +110,21 @@ exports.updatePlayer = (playerId, playerData) => {
     if (vRes.error) {
         return Promise.reject(vRes.error);
     }
-    const firstName = playerData.firstName;
-    const lastName = playerData.lastName;
-    const email = playerData.email;
-    const sql = `UPDATE Player set firstName = ?, lastName = ?, email = ? where _id = ?`;
-    return db.promise().execute(sql, [firstName, lastName, email, playerId]);
+    return checkEmailUnique(playerData.email, playerId)
+    .then(emailErr => {
+        if(emailErr.details){
+            return Promise.reject(emailErr);
+        } else {
+            const firstName = playerData.firstName;
+            const lastName = playerData.lastName;
+            const email = playerData.email;
+            const sql = `UPDATE Player set firstName = ?, lastName = ?, email = ? where _id = ?`;
+            return db.promise().execute(sql, [firstName, lastName, email, playerId]);
+        }
+    })
+    .catch(err =>{
+        return Promise.reject(err);
+    });
 };
 
 exports.deletePlayer = (playerId) => {

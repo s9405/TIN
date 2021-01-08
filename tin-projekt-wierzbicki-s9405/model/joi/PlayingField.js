@@ -12,8 +12,6 @@ const errMessages = (errors) => {
             case "string.max":
                 err.message = `Pole powinno zaiwerać co najwyżej ${err.local.limit} znaków`;
                 break;
-            case "string.email":
-                err.message = `Pole powinno zawierać prawidłowy adres email`;
             default:
                 break;
         }
@@ -25,18 +23,19 @@ const playerSchema = Joi.object({
     _id: Joi.number()
         .optional()
         .allow(""),
-    firstName: Joi.string()
+    name: Joi.string()
         .min(2)
         .max(20)
         .required()
         .error(errMessages),
-    lastName: Joi.string()
+    adress: Joi.string()
         .min(2)
         .max(20)
         .required()
         .error(errMessages),
-    email: Joi.string()
-        .email()
+    cloackroom: Joi.string()
+        .min(1)
+        .max(1)
         .required()
         .error(errMessages)
 });

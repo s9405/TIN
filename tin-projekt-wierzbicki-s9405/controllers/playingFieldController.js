@@ -17,7 +17,8 @@ exports.showAddPlayingFieldForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj obiekt sportowy',
         formAction: '/playingfields/add',
-        navLocation: 'playingField'
+        navLocation: 'playingField',
+        validationErrors: []
     });
 }
 
@@ -31,7 +32,8 @@ exports.showEditPlayingFieldForm = (req, res, next) => {
                 pageTitle: 'Edycja obiektu sportowego',
                 btnLabel: 'Edytuj obiekt sportowy',
                 formAction: '/playingfields/edit',
-                navLocation: 'playingField'
+                navLocation: 'playingField',
+                validationErrors: []
             });
         });
 };
@@ -45,7 +47,8 @@ exports.showPlayingFieldDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły obiektu sportowego',
                 formAction: '',
-                navLocation: 'playingField'
+                navLocation: 'playingField',
+                validationErrors: []
             });
         });
 }
@@ -55,6 +58,17 @@ exports.addPlayingField = (req, res, next) => {
     PlayingFieldRepository.createPlayingField(pfData)
         .then( result => {
             res.redirect('/playingfields');
+        })
+        .catch(err =>{
+            res.render('pages/playingfield/form', {
+                pf: pfData,
+                pageTitle: 'Dodawanie obiektu sportowego',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj obiekt sportowy',
+                formAction: '/playingfields/add',
+                navLocation: 'playingField',
+                validationErrors: err.details
+            });
         });
 };
 
@@ -64,6 +78,17 @@ exports.updatePlayingField = (req, res, next) => {
     PlayingFieldRepository.updatePlayingField(pfId, pfData)
         .then( result => {
             res.redirect('/playingfields');
+        })
+        .catch(err => {
+            res.render('pages/playingfield/form', {
+                pf: pfData,
+                formMode: 'edit',
+                pageTitle: 'Edycja obiektu sportowego',
+                btnLabel: 'Edytuj obiekt sportowy',
+                formAction: '/playingfields/edit',
+                navLocation: 'playingField',
+                validationErrors: err.details
+            });
         });
 };
 

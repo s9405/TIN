@@ -1,4 +1,29 @@
 const db = require('../../config/mysql2/db');
+const pfSchema = require('../../model/joi/PlayingField');
+
+checkNameUnique = (name, pfId) => {
+    let sql, promise;
+    if (pfId) {
+        sql = `SELECT COUNT(1) as c FROM Playing_field where _id != ? and name = ?`;
+        promise = db.promise().query(sql, [pfId, name]);
+    } else {
+        sql = `SELECT COUNT(1) as c FROM Playing_field where name = ?`;
+        promise = db.promise().query(sql, [name]);
+    }
+    return promise.then( (results, fields) =>{
+        const count = results[0][0].c;
+        let err = {};
+        if (count > 0) {
+            err = {
+                details: [{
+                    path: ['name'],
+                    message: 'Podana nazwa jest używana'
+                }]
+            };
+        }
+        return err;
+    });
+}
 
 exports.getPlayingFields = () => {
     return db.promise().query('SELECT * FROM Playing_field')
@@ -58,20 +83,47 @@ exports.getPlayingFieldById = (pfId) => {
 };
 
 exports.createPlayingField = (newPlayingFieldData) => {
-    const name = newPlayingFieldData.name;
-    const adress = newPlayingFieldData.adress;
-    const cloackroom = newPlayingFieldData.cloackroom;
-    const sql = 'INSERT into Playing_field (name, adress, cloackroom) VALUES (?, ?, ?)'
-    return db.promise().execute(sql, [name, adress, cloackroom]);
-
+    const vRes = pfSchema.validate(newPlayingFieldData, {abortEarly: false});
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
+    return checkNameUnique(newPlayingFieldData.name)
+        .then(nameErr => {
+            if (nameErr.details) {
+                return Promise.reject(nameErr);
+            } else {
+                const name = newPlayingFieldData.name;
+                const adress = newPlayingFieldData.adress;
+                const cloackroom = newPlayingFieldData.cloackroom;
+                const sql = 'INSERT into Playing_field (name, adress, cloackroom) VALUES (?, ?, ?)'
+                return db.promise().execute(sql, [name, adress, cloackroom]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.updatePlayingField = (playingFieldId, playingFieldData) => {
-    const name = playingFieldData.name;
-    const adress = playingFieldData.adress;
-    const cloackroom = playingFieldData.cloackroom;
-    const sql = `UPDATE Playing_field set name = ?, adress = ?, cloackroom = ? where _id = ?`;
-    return db.promise().execute(sql, [name, adress, cloackroom, playingFieldId]);
+    const vRes = pfSchema.validate(playingFieldData, {abortEarly: false});
+    if (vRes.error) {
+        return Promise.reject(vRes.error);
+    }
+    return checkNameUnique(playingFieldData.name, playingFieldId)
+        .then(nameErr => {
+            if (nameErr.details) {
+                return Promise.reject(nameErr);
+            } else {
+                const name = playingFieldData.name;
+                const adress = playingFieldData.adress;
+                const cloackroom = playingFieldData.cloackroom;
+                const sql = `UPDATE Playing_field set name = ?, adress = ?, cloackroom = ? where _id = ?`;
+                return db.promise().execute(sql, [name, adress, cloackroom, playingFieldId]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.deletePlayingField = (playingFieldId) => {

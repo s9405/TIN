@@ -2,23 +2,38 @@
     <main>
         <script type="application/javascript" src="/js/validationPlayingField.js"></script>
         <h2><%=pageTitle %></h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+        <form class="form" method="post" action="<%=formAction%>" novalidate >
             <input type="hidden" name="_id" value="<%= pf._id %>">
 
             <label for="name">Nazwa:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= pf.name %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
+            type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= pf.name %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorName" class="errors-text"></span>
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="adress">Adres:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="adress" id="adress" placeholder="2-60 znaków" value="<%= pf.adress %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('adress')) ? 'error-input' : '' %>"
+            type="text" name="adress" id="adress" placeholder="2-60 znaków" value="<%= pf.adress %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorAdress" class="errors-text"></span>
+            <span id="errorAdress" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('adress'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('adress')).message %>
+                <% } %>
+            </span>
 
             <label for="cloackroom">Szatnia:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="text" name="cloackroom" id="cloackroom" placeholder="0 lub 1" value="<%= pf.cloackroom %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('cloackroom')) ? 'error-input' : '' %>"
+            type="text" name="cloackroom" id="cloackroom" placeholder="0 lub 1" value="<%= pf.cloackroom %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorCloackroom" class="errors-text"></span>
+            <span id="errorCloackroom" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('cloackroom'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('cloackroom')).message %>
+                <% } %>
+            </span>
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
@@ -26,7 +41,7 @@
                 </div>
             <% } %>
 
-            <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <% if (formMode == 'showDetails') { %>
                 <h2>Szczegóły eventów</h2>
                 <table class="table-list">
                     <thead>
