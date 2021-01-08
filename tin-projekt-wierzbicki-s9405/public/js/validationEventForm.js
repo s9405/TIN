@@ -36,7 +36,7 @@ function validateForm() {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
         errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą";
-    } else if (!checkNumberRange(MaxNumberOfPlayerInput.value, 2, 10)) {
+    } else if (!checkNumberRange(MaxNumberOfPlayerInput.value, 1, 10)) {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
         errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą w zakresie od 2 do 10";

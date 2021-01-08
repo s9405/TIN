@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const eventControler = require('../controllers/eventController');
-router.get('/', eventControler.showEvent);
+router.get('/', eventControler.showEventList);
 router.get('/add', eventControler.showAddEventForm);
-router.get('/details', eventControler.showEventDetails);//router.get('/details/:playerId', playerControler.showPlayerDetails);
+router.get('/edit/:eventId', eventControler.showEditEventForm);
+router.get('/details/:eventId', eventControler.showEventDetails);
+router.post('/add', eventControler.addEvent);
+router.post('/edit', eventControler.updateEvent);
+router.get('/delete/:eventId', eventControler.deleteEvent);
 module.exports = router;

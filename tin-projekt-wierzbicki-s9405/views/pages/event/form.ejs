@@ -1,38 +1,63 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <script type="application/javascript" src="../js/validationEventForm.js"></script>
-        <form class="form" novalidate onsubmit="return validateForm()">
+        <script type="application/javascript" src="/js/validationEventForm.js"></script>
+        <h2><%= pageTitle%></h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+            <input type="hidden", name="_id" value="<%= event._id%>">
 
             <label for="player">Gracz:<abbr title="required" aria-label="required">*</abbr></label>
-            <select id="player">
-                <option>Jan Nowak</option>
-                <option>Paweł Kowalski</option>
+            <select id="player" name="playerId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+                <% if (formMode == 'createNew') { %>
+                <option value="" selected>--- Wybierz gracza ---</option>
+                <% } %>
+                <% for (let i=0; i<allPlayers.length; i++) { let player = allPlayers[i]; %>
+                    <option value="<%= player._id%>" label="<%= player.firstName + ' ' + player.lastName %>"
+                        <%= (event._id && player._id.toString() == event.player._id.toString()) ? 'selected' : ''%>></option>
+                <% } %>
             </select>
             <span id="errorPlayer" class="errors-text"></span>
 
             <label for="playing-field">Obiekt sportowy:<abbr title="required" aria-label="required">*</abbr></label>
-            <select id="playingField">
-                <option>Hala sportowa praga pn</option>
-                <option>Orlik targówek 2</option>
+            <select id="playingField" name="playingFieldId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+                <% if (formMode == 'createNew') { %>
+                <option value="" selected>--- Wybierz obiekt sportowy ---</option>
+                <% } %>
+                <% for (let i=0; i<allPlayingFields.length; i++) { let playingField = allPlayingFields[i]; %>
+                    <option value="<%= playingField._id%>" label="<%= playingField.name %>"
+                        <%= (event._id && playingField._id.toString() == event.playingField._id.toString()) ? 'selected' : ''%>></option>
+                <% } %>
             </select>
             <span id="errorPlayingField" class="errors-text"></span>
 
             <label for="begin-time">Początek:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="begin-time" id="beginTime" />
+            <input type="datetime-local" name="beginTime" id="beginTime" value="<%= event.beginTime ? event.beginTime.toISOString().split('.')[0] : '' %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorBeginTime" class="errors-text"></span>
 
             <label for="end-time">Koniec:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="end-time" id="endTime" />
+            <input type="datetime-local" name="endTime" id="endTime" value="<%= event.endTime ? event.endTime.toISOString().split('.')[0] : ''%>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorEndTime" class="errors-text"></span>
 
             <label for="max-number-of-player">Ilość graczy:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="max-number-of-player" id="MaxNumberOfPlayer" />
+            <input type="number" name="maxNumberOfPlayer" id="MaxNumberOfPlayer" value="<%= event.maxNumberOfPlayer %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorMaxNumberOfPlayer" class="errors-text"></span>
+
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a href="/events/edit/<%= event._id %>" class="list-actions-button-edit">Edytuj</a>
+                </div>
+            <% } %>
 
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
-                <input type="submit" value="Dodaj" class="form-button-submit" />
-                <a href="/events" class="form-button-cancel">Anuluj</a>
+                <% if (formMode != 'showDetails') { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                    <a class="form-button-cancel" href="/events">Anuluj</a>
+                <% } else { %>
+                    <a class="form-button-cancel" href="/events">Powrót</a>
+                <% } %>
             </div>
         </form>
 

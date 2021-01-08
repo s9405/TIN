@@ -1,0 +1,39 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Eventy</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Ilość graczy</th>
+                    <th>Początek</th>
+                    <th>Koniec</th>
+                    <th>Obiekt sportowy</th>
+                    <th>Gracz</th>
+                    <th>Akcje</th>
+                </tr>
+                <tbody>
+                    <% for (let event of events) { %>
+                        <tr>
+                            <td><%= event.maxNumberOfPlayer%></td>
+                            <td><%= event.beginTime.toLocaleString()%></td>
+                            <td><%= event.endTime.toLocaleString()%></td>
+                            <td><%= event.playingField.name%></td>
+                            <td><%= event.player.lastName%></td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li><a href="/events/details/<%=event._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                                    <li><a href="/events/edit/<%=event._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                                    <li><a href="/events/delete/<%=event._id%>" class="list-actions-button-delete">Usuń</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </thead>
+        </table>
+        <div class="form-buttons">
+            <p><a href="events/add" class="button-add">Dodaj nowy event</a></p>
+        </div>
+
+    </main>
+<%- include('../../fragments/footer.ejs') %>

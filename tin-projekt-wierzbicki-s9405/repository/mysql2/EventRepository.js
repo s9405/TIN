@@ -47,30 +47,32 @@ exports.getEventById = (eventId) => {
         and e._id = ?`
     return db.promise().query(query, [eventId])
         .then( (results, fields) => {
-            const events = [];
-            for(let i=0; i<results[0].length; i++) {
-                const row = results[0][i];
+            const firstRow = results[0][0];
+            if (!firstRow) {
+                return {};
+            }
+
                 const event = {
-                    _id: row.event_id,
-                    maxNumberOfPlayer: row.max_number_of_player,
-                    beginTime: row.begin_time,
-                    endTime: row.end_time,
+                    _id: firstRow.event_id,
+                    maxNumberOfPlayer: firstRow.max_number_of_player,
+                    beginTime: firstRow.begin_time,
+                    endTime: firstRow.end_time,
                     playingField: {
-                        _id: row.playing_field_id,
-                        name: row.name,
-                        cloackroom: row.cloackroom
+                        _id: firstRow.playing_field_id,
+                        name: firstRow.name,
+                        cloackroom: firstRow.cloackroom
                     },
                     player: {
-                        _id: row.player_id,
-                        firstName: row.firstName,
-                        lastName: row.lastName,
-                        email: row.email
+                        _id: firstRow.player_id,
+                        firstName: firstRow.firstName,
+                        lastName: firstRow.lastName,
+                        email: firstRow.email
                     }
                 };
-                events.push(event);
-            }
-            console.log(events);
-            return events;
+               
+            
+            console.log(event);
+            return event;
         })
         .catch(err => {
             console.log(err);
