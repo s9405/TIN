@@ -41,8 +41,8 @@
                         <% for (let e of pf.events) { %>
                             <tr>
                                 <td><a href="/players/details/<%= e.player._id%>"><%= e.player.lastName%></a></td>
-                                <td><%= e.beginTime.toLocaleString() %></td>
-                                <td><%= e.endTime.toLocaleString() %></td>
+                                <td><%= e.beginTime.toISOString().split('.')[0] %></td>
+                                <td><%= e.endTime.toISOString().split('.')[0] %></td>
                                 <td><%= e.maxNumberOfPlayer%></td>
                             </tr>
                         <% } %>

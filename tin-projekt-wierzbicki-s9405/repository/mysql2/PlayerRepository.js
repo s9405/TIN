@@ -1,4 +1,29 @@
 const db = require('../../config/mysql2/db');
+const playerSchema = require('../../model/joi/Player');
+
+checkEmailUnique = (email, playerId) => {
+    let sql, promise;
+    if (playerId) {
+        sql = `SELECT COUNT(1) as c FROM Player where _id !=? and email = ?`;
+        promise = db.promise().query(sql, [playerId, email]);
+    } else {
+        sql = `SELECT COUNT(1) as c FROM Player where email = ?`;
+        promise = db.promise().query(sql, [email]);
+    }
+    return promise.then( (results, fields) => {
+        const count = results[0][0].c;
+        let err = {};
+        if (count > 0){
+            err = {
+                details: [{
+                    path: ['email'],
+                    message: 'Podany adres email jest używany'
+                }]
+            };
+        }
+        return err;
+    });
+}
 
 exports.getPlayers = () =>{
     return db.promise().query('SELECT * FROM Player')
@@ -59,14 +84,32 @@ return db.promise().query(query, [playerId])
 };
 
 exports.createPlayer = (newPlayerData) => {
-    const firstName = newPlayerData.firstName;
-    const lastName = newPlayerData.lastName;
-    const email = newPlayerData.email;
-    const sql = 'INSERT into Player (firstName, lastName, email) VALUES (?, ?, ?)'
-    return db.promise().execute(sql, [firstName, lastName, email]);
+    const vRes = playerSchema.validate(newPlayerData, { abortEarly: false} );
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
+    return checkEmailUnique(newPlayerData.email)
+        .then(emailErr => {
+            if(emailErr.details) {
+                return Promise.reject(emailErr);
+            } else {
+                const firstName = newPlayerData.firstName;
+                const lastName = newPlayerData.lastName;
+                const email = newPlayerData.email;
+                const sql = 'INSERT into Player (firstName, lastName, email) VALUES (?, ?, ?)'
+                return db.promise().execute(sql, [firstName, lastName, email]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.updatePlayer = (playerId, playerData) => {
+    const vRes = playerSchema.validate(playerData, { abortEarly: false});
+    if (vRes.error) {
+        return Promise.reject(vRes.error);
+    }
     const firstName = playerData.firstName;
     const lastName = playerData.lastName;
     const email = playerData.email;

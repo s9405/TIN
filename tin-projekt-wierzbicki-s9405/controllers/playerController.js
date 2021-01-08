@@ -17,7 +17,8 @@ exports.showAddPlayerForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj gracza',
         formAction: '/players/add',
-        navLocation: 'player'
+        navLocation: 'player',
+        validationErrors: []
     });
 }
 
@@ -31,7 +32,8 @@ exports.showEditPlayerForm = (req, res, next) => {
                 pageTitle: 'Edycja gracza',
                 btnLabel: 'Edytuj gracza',
                 formAction: '/players/edit',
-                navLocation: 'player'
+                navLocation: 'player',
+                validationErrors: []
             });
         });
 }
@@ -45,7 +47,8 @@ exports.showPlayerDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły gracza',
                 formAction: '',
-                navLocation: 'player'
+                navLocation: 'player',
+                validationErrors: []
             });
         });
 }
@@ -55,6 +58,17 @@ exports.addPlayer = (req, res, next) => {
     PlayerRepository.createPlayer(playerData)
         .then( result => {
             res.redirect('/players');
+        })
+        .catch(err => {
+            res.render('pages/player/form', {
+                player: playerData,
+                pageTitle: 'Dodawanie gracza',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj gracza',
+                formAction: '/players/add',
+                navLocation: 'player',
+                validationErrors: err.details
+            });
         });
 };
 
@@ -64,6 +78,17 @@ exports.updatePlayer = (req, res, next) => {
     PlayerRepository.updatePlayer(playerId, playerData)
         .then( result => {
             res.redirect('/players');
+        })
+        .catch(err => {
+            res.render('pages/player/form', {
+                player: playerData,
+                formMode: 'edit',
+                pageTitle: 'Edycja gracza',
+                btnLabel: 'Edytuj gracza',
+                formAction: '/players/edit',
+                navLocation: 'player',
+                validationErrors: err.details
+            });
         });
 };
 
