@@ -104,6 +104,9 @@ exports.createEvent = (newEventData) => {
             if (serverErr){
                 return Promise.reject(serverErr);
             } else {
+                const difTimeZone = -(new Date(newEventData.beginTime).getTimezoneOffset() * 60000);
+                newEventData.endTime = new Date(Date.parse(newEventData.endTime)+ difTimeZone);
+                newEventData.beginTime = new Date(Date.parse(newEventData.beginTime)+ difTimeZone);
                 console.log('createEvent');
                 console.log(newEventData);
                 const sql = 'INSERT into Event (player_id, playing_field_id, max_number_of_player, begin_time, end_time) VALUES (?, ?, ?, ?, ?)';
