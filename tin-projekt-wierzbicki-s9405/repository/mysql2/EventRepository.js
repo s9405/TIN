@@ -122,12 +122,12 @@ exports.updateEvent = (eventId, eventData) => {
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkPlayerEveble(eventData.playerId, eventData.beginTime, eventData.endTime)
+    return checkPlayerEveble(eventData.playerId, eventData.beginTime, eventData.endTime, eventId)
     .then(pErr => {
         if(pErr.details) {
             serverErr = pErr;
         }
-        return checkPlayingFieldEveble(eventData.playingFieldId, eventData.beginTime, eventData.endTime);
+        return checkPlayingFieldEveble(eventData.playingFieldId, eventData.beginTime, eventData.endTime, eventId);
     })
     .then(pfErr =>{
         if(pfErr.details) {
@@ -159,11 +159,21 @@ exports.deleteEvent = (eventId) => {
     return db.promise().execute(sql, [eventId]);
 };
 
-checkPlayingFieldEveble = (pfId, beginTime, endTime) => {
-    const sql = `SELECT COUNT(1) as c FROM Event WHERE playing_field_id = ? and ((begin_time BETWEEN ? and ?)
+checkPlayingFieldEveble = (pfId, beginTime, endTime, eventId) => {
+    let sql, promise;
+    if(eventId){
+        sql = `SELECT COUNT(1) as c FROM Event WHERE playing_field_id = ? and ((begin_time BETWEEN ? and ?)
+                                        OR (end_time BETWEEN ? and ?)
+                                        OR (? > begin_time and ? < end_time))
+                                        AND _id != ?`;
+        promise = db.promise().query(sql ,[pfId, beginTime, endTime, beginTime, endTime, beginTime, endTime, eventId]);
+
+    } else{
+        sql = `SELECT COUNT(1) as c FROM Event WHERE playing_field_id = ? and ((begin_time BETWEEN ? and ?)
                                         OR (end_time BETWEEN ? and ?)
                                         OR (? > begin_time and ? < end_time))`;
-    const promise = db.promise().query(sql ,[pfId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+        promise = db.promise().query(sql ,[pfId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+    }
     return promise.then((results, fields) => {
         const count = results[0][0].c;
         let err = {};
@@ -179,11 +189,20 @@ checkPlayingFieldEveble = (pfId, beginTime, endTime) => {
     })
 };
 
-checkPlayerEveble = (playerId, beginTime, endTime) => {
-    const sql = `SELECT COUNT(1) as c FROM Event WHERE player_id = ? and ((begin_time BETWEEN ? and ?)
+checkPlayerEveble = (playerId, beginTime, endTime, eventId) => {
+    let sql, promise;
+    if(eventId){
+    sql = `SELECT COUNT(1) as c FROM Event WHERE player_id = ? and ((begin_time BETWEEN ? and ?)
+                                        OR (end_time BETWEEN ? and ?)
+                                        OR (? > begin_time and ? < end_time))
+                                        AND _id != ?`;
+    promise = db.promise().query(sql ,[playerId, beginTime, endTime, beginTime, endTime, beginTime, endTime, eventId]);
+    } else {
+        sql = `SELECT COUNT(1) as c FROM Event WHERE player_id = ? and ((begin_time BETWEEN ? and ?)
                                         OR (end_time BETWEEN ? and ?)
                                         OR (? > begin_time and ? < end_time))`;
-    const promise = db.promise().query(sql ,[playerId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+        promise = db.promise().query(sql ,[playerId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+    }
     return promise.then((results, fields) => {
         const count = results[0][0].c;
         let err = {};
