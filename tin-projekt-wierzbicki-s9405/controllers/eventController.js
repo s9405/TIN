@@ -35,7 +35,8 @@ exports.showEditEventForm = (req, res, next) => {
                 btnLabel: 'Edytuj event',
                 formAction: '/events/edit',
                 navLocation: 'event',
-                formMode: ''
+                formMode: '',
+                validationErrors: []
             });
         });
 } 
@@ -57,7 +58,8 @@ exports.showAddEventForm = (req, res, next) => {
                 pageTitle: 'Nowy event',
                 btnLabel: 'Dodaj event',
                 formAction: '/events/add',
-                navLocation: 'event'
+                navLocation: 'event',
+                validationErrors: []
             });
         });
 }
@@ -84,25 +86,81 @@ exports.showEventDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły eventu',
                 formAction: '',
-                navLocation: 'event'
+                navLocation: 'event',
+                validationErrors: []
             });
         });
 }
 
 exports.addEvent = (req, res, next) => {
     const eventData = {...req.body };
+    let allPlayers, allPlayingFields;
     EventRepository.createEvent(eventData)
         .then( result => {
             res.redirect('/events');
+        })
+        .catch(err => {
+            if(eventData.endTime != ''){
+                eventData.endTime = new Date(eventData.endTime);
+            }
+            if(eventData.beginTime != ''){
+                eventData.beginTime = new Date(eventData.beginTime);
+            }
+            PlayerRepository.getPlayers()
+            .then(players =>{
+                allPlayers = players;
+                return PlayingFieldRepository.getPlayingFields();
+            })
+            .then(playingFields => {
+                allPlayingFields = playingFields;
+                res.render('pages/event/form', {
+                    event: eventData,
+                    allPlayers: allPlayers,
+                    allPlayingFields: allPlayingFields,
+                    pageTitle: 'Dodawanie eventu',
+                    formMode: 'createNewErr',
+                    btnLabel: 'Dodaj event',
+                    formAction: '/events/add',
+                    navLocation: 'event',
+                    validationErrors: err.details
+                });
+            });
         });
 };
 
 exports.updateEvent = (req, res, next) => {
+    let allPlayers, allPlayingFields;
+    let eventD;
     const eventId = req.body._id
     const eventData = { ...req.body };
     EventRepository.updateEvent(eventId, eventData)
         .then( result => {
             res.redirect('/events');
+        })
+        .catch(err => {
+            EventRepository.getEventById(eventId)
+            .then(event =>{
+                eventD = event;
+                return PlayerRepository.getPlayers(); 
+            })
+            .then(players =>{
+                allPlayers = players;
+                return PlayingFieldRepository.getPlayingFields();
+            })
+            .then(playingFields => {
+                allPlayingFields = playingFields;
+                res.render('pages/event/form', {
+                    event: eventD,
+                    allPlayers: allPlayers,
+                    allPlayingFields: allPlayingFields,
+                    formMode: 'edit',
+                    pageTitle: 'Edycja eventu',
+                    btnLabel: 'Edycja eventu',
+                    formAction: '/events/edit',
+                    navLocation: 'event',
+                    validationErrors: err.details
+                });
+            });
         });
 };
 

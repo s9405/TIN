@@ -58,8 +58,8 @@
                 <% for (let e of player.events) { %>
                     <tr>
                         <td><a href="/playingfields/details/<%= e.playingField._id %>"><%= e.playingField.name %></a></td>
-                        <td><%= e.beginTime.toLocaleString() %></td>
-                        <td><%= e.endTime.toLocaleString() %></td>
+                        <td><%= e.beginTime.toISOString().split('.')[0].replace('T',' ') %></td>
+                        <td><%= e.endTime.toISOString().split('.')[0].replace('T',' ') %></td>
                         <td><%= e.maxNumberOfPlayer %></td>
                     </tr>
 

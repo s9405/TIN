@@ -2,7 +2,7 @@
     <main>
         <script type="application/javascript" src="/js/validationPlayingField.js"></script>
         <h2><%=pageTitle %></h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate >
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
             <input type="hidden" name="_id" value="<%= pf._id %>">
 
             <label for="name">Nazwa:<abbr title="required" aria-label="required">*</abbr></label>
@@ -56,8 +56,8 @@
                         <% for (let e of pf.events) { %>
                             <tr>
                                 <td><a href="/players/details/<%= e.player._id%>"><%= e.player.lastName%></a></td>
-                                <td><%= e.beginTime.toISOString().split('.')[0] %></td>
-                                <td><%= e.endTime.toISOString().split('.')[0] %></td>
+                                <td><%= e.beginTime.toISOString().split('.')[0].replace('T',' ') %></td>
+                                <td><%= e.endTime.toISOString().split('.')[0].replace('T',' ') %></td>
                                 <td><%= e.maxNumberOfPlayer%></td>
                             </tr>
                         <% } %>

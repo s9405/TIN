@@ -15,8 +15,8 @@
                     <% for (let event of events) { %>
                         <tr>
                             <td><%= event.maxNumberOfPlayer%></td>
-                            <td><%= event.beginTime.toLocaleString()%></td>
-                            <td><%= event.endTime.toLocaleString()%></td>
+                            <td><%= event.beginTime.toISOString().split('.')[0].replace('T',' ')%></td>
+                            <td><%= event.endTime.toISOString().split('.')[0].replace('T',' ')%></td>
                             <td><%= event.playingField.name%></td>
                             <td><%= event.player.lastName%></td>
                             <td>

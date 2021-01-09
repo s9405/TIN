@@ -1,4 +1,5 @@
 const db = require('../../config/mysql2/db');
+const eventSchema = require('../../model/joi/Event');
 
 exports.getEvents = () => {
     const query = `SELECT e._id as event_id, e.max_number_of_player, e.begin_time, e.end_time, pf._id as playing_field_id, pf.name,
@@ -80,21 +81,120 @@ exports.getEventById = (eventId) => {
 };
 
 exports.createEvent = (newEventData) => {
-    console.log('createEvent');
-    console.log(newEventData);
-    const sql = 'INSERT into Event (player_id, playing_field_id, max_number_of_player, begin_time, end_time) VALUES (?, ?, ?, ?, ?)';
-    return db.promise().execute(sql, [newEventData.playerId, newEventData.playingFieldId,
-         newEventData.maxNumberOfPlayer, newEventData.beginTime, newEventData.endTime]);
+    let serverErr;
+    const vRes = eventSchema.validate(newEventData, {abortEarly: false});
+    if(vRes.error) {
+        return Promise.reject(vRes.error)
+    }
+    return checkPlayerEveble(newEventData.playerId, newEventData.beginTime, newEventData.endTime)
+        .then(pErr => {
+            if(pErr.details) {
+                serverErr = pErr;
+            }
+            return checkPlayingFieldEveble(newEventData.playingFieldId, newEventData.beginTime, newEventData.endTime);
+        })
+        .then(pfErr =>{
+            if(pfErr.details) {
+                if(serverErr.details){
+                    serverErr.details.push(pfErr.details[0]);
+                } else {
+                    serverErr = pfErr;
+                }              
+            }
+            if (serverErr){
+                return Promise.reject(serverErr);
+            } else {
+                console.log('createEvent');
+                console.log(newEventData);
+                const sql = 'INSERT into Event (player_id, playing_field_id, max_number_of_player, begin_time, end_time) VALUES (?, ?, ?, ?, ?)';
+                return db.promise().execute(sql, [newEventData.playerId, newEventData.playingFieldId,
+                                        newEventData.maxNumberOfPlayer, newEventData.beginTime, newEventData.endTime]);
+            }
+        })
+        .catch(err => {
+            return Promise.reject(err);
+        });
 };
 
 exports.updateEvent = (eventId, eventData) => {
-    console.log(eventData);
-    const sql = `UPDATE Event set player_id = ?, playing_field_id = ?, max_number_of_player = ?, begin_time = ?, end_time = ? where _id = ?`;
-    return db.promise().execute(sql, [eventData.playerId, eventData.playingFieldId, eventData.maxNumberOfPlayer,
-         eventData.beginTime, eventData.endTime, eventId]);
+    let serverErr;
+    const vRes = eventSchema.validate(eventData, {abortEarly: false});
+    if(vRes.error) {
+        return Promise.reject(vRes.error);
+    }
+    return checkPlayerEveble(eventData.playerId, eventData.beginTime, eventData.endTime)
+    .then(pErr => {
+        if(pErr.details) {
+            serverErr = pErr;
+        }
+        return checkPlayingFieldEveble(eventData.playingFieldId, eventData.beginTime, eventData.endTime);
+    })
+    .then(pfErr =>{
+        if(pfErr.details) {
+            if(serverErr.details){
+                serverErr.details.push(pfErr.details[0]);
+            } else {
+                serverErr = pfErr;
+            }              
+        }
+        if (serverErr){
+            return Promise.reject(serverErr);
+        } else {
+            const difTimeZone = -(new Date(eventData.beginTime).getTimezoneOffset() * 60000);
+            eventData.endTime = new Date(Date.parse(eventData.endTime)+ difTimeZone);
+            eventData.beginTime = new Date(Date.parse(eventData.beginTime)+ difTimeZone);
+            console.log(eventData);
+            const sql = `UPDATE Event set player_id = ?, playing_field_id = ?, max_number_of_player = ?, begin_time = ?, end_time = ? where _id = ?`;
+            return db.promise().execute(sql, [eventData.playerId, eventData.playingFieldId, eventData.maxNumberOfPlayer,
+                eventData.beginTime, eventData.endTime, eventId]);
+            }
+    })
+    .catch(err => {
+        return Promise.reject(err);
+    });
 };
 
 exports.deleteEvent = (eventId) => {
     const sql = 'DELETE FROM Event where _id = ?'
     return db.promise().execute(sql, [eventId]);
+};
+
+checkPlayingFieldEveble = (pfId, beginTime, endTime) => {
+    const sql = `SELECT COUNT(1) as c FROM Event WHERE playing_field_id = ? and ((begin_time BETWEEN ? and ?)
+                                        OR (end_time BETWEEN ? and ?)
+                                        OR (? > begin_time and ? < end_time))`;
+    const promise = db.promise().query(sql ,[pfId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+    return promise.then((results, fields) => {
+        const count = results[0][0].c;
+        let err = {};
+        if (count > 0 ){
+            err = {
+                details: [{
+                    path: ['playingFieldId'],
+                    message: 'Obiekt sportowy jest zajety w tych godzinach'
+                }]
+            };
+        }
+        return err;
+    })
+};
+
+checkPlayerEveble = (playerId, beginTime, endTime) => {
+    const sql = `SELECT COUNT(1) as c FROM Event WHERE player_id = ? and ((begin_time BETWEEN ? and ?)
+                                        OR (end_time BETWEEN ? and ?)
+                                        OR (? > begin_time and ? < end_time))`;
+    const promise = db.promise().query(sql ,[playerId, beginTime, endTime, beginTime, endTime, beginTime, endTime]);
+    return promise.then((results, fields) => {
+        const count = results[0][0].c;
+        let err = {};
+        if (count >0 ){
+            err = {
+                details: [{
+                    path: ['playerId'],
+                    message: 'Gracz jest zajety w tych godzinach'
+                }]
+            };
+        }
+        return err;
+    })
 };

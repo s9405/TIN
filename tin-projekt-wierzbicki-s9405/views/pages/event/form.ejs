@@ -2,11 +2,12 @@
     <main>
         <script type="application/javascript" src="/js/validationEventForm.js"></script>
         <h2><%= pageTitle%></h2>
-        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
             <input type="hidden", name="_id" value="<%= event._id%>">
 
             <label for="player">Gracz:<abbr title="required" aria-label="required">*</abbr></label>
-            <select id="player" name="playerId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <select class="<%= validationErrors.find(e => e.path.includes('playerId')) ? 'error-input' : '' %>"
+            id="player" name="playerId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
                 <% if (formMode == 'createNew') { %>
                 <option value="" selected>--- Wybierz gracza ---</option>
                 <% } %>
@@ -15,10 +16,15 @@
                         <%= (event._id && player._id.toString() == event.player._id.toString()) ? 'selected' : ''%>></option>
                 <% } %>
             </select>
-            <span id="errorPlayer" class="errors-text"></span>
+            <span id="errorPlayer" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('playerId'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('playerId')).message %>
+                <% } %>
+            </span>
 
             <label for="playing-field">Obiekt sportowy:<abbr title="required" aria-label="required">*</abbr></label>
-            <select id="playingField" name="playingFieldId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <select class="<%= validationErrors.find(e => e.path.includes('playingFieldId')) ? 'error-input' : '' %>"
+            id="playingField" name="playingFieldId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
                 <% if (formMode == 'createNew') { %>
                 <option value="" selected>--- Wybierz obiekt sportowy ---</option>
                 <% } %>
@@ -27,22 +33,42 @@
                         <%= (event._id && playingField._id.toString() == event.playingField._id.toString()) ? 'selected' : ''%>></option>
                 <% } %>
             </select>
-            <span id="errorPlayingField" class="errors-text"></span>
+            <span id="errorPlayingField" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('playingFieldId'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('playingFieldId')).message %>
+                <% } %>
+            </span>
 
             <label for="begin-time">Początek:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="beginTime" id="beginTime" value="<%= event.beginTime ? event.beginTime.toISOString().split('.')[0] : '' %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('beginTime')) ? 'error-input' : '' %>"
+            type="datetime-local" name="beginTime" id="beginTime" value="<%= event.beginTime ? event.beginTime.toISOString().split('.')[0] : '' %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorBeginTime" class="errors-text"></span>
+            <span id="errorBeginTime" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('beginTime'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('beginTime')).message %>
+                <% } %>
+            </span>
 
             <label for="end-time">Koniec:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="datetime-local" name="endTime" id="endTime" value="<%= event.endTime ? event.endTime.toISOString().split('.')[0] : ''%>"
+            <input class="<%= validationErrors.find(e => e.path.includes('endTime')) ? 'error-input' : '' %>"
+            type="datetime-local" name="endTime" id="endTime" 
+            value="<%= event.endTime ? event.endTime.toISOString().split('.')[0]  : ''%>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorEndTime" class="errors-text"></span>
+            <span id="errorEndTime" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('endTime'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('endTime')).message %>
+                <% } %>
+            </span>
 
             <label for="max-number-of-player">Ilość graczy:<abbr title="required" aria-label="required">*</abbr></label>
-            <input type="number" name="maxNumberOfPlayer" id="MaxNumberOfPlayer" value="<%= event.maxNumberOfPlayer %>"
+            <input class="<%= validationErrors.find(e => e.path.includes('maxNumberOfPlayer')) ? 'error-input' : '' %>"
+            type="number" name="maxNumberOfPlayer" id="MaxNumberOfPlayer" value="<%= event.maxNumberOfPlayer %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-            <span id="errorMaxNumberOfPlayer" class="errors-text"></span>
+            <span id="errorMaxNumberOfPlayer" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('maxNumberOfPlayer'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('maxNumberOfPlayer')).message %>
+                <% } %>
+            </span>
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">

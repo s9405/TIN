@@ -39,7 +39,7 @@ function validateForm() {
     } else if (!checkNumberRange(MaxNumberOfPlayerInput.value, 1, 10)) {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
-        errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą w zakresie od 2 do 10";
+        errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą w zakresie od 1 do 10";
     }
 
     if (!checkRequired(beginTimeInput.value)) {
