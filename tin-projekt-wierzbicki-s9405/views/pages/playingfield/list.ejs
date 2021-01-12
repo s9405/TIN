@@ -7,7 +7,9 @@
                     <th>Nazwa</th>
                     <th>Adres</th>
                     <th>Szatnia</th>
+                    <% if (loggedUser) {%>
                     <th>Akcje</th>
+                    <% } %>
                 </tr>
             </thead>
             <tbody>
@@ -16,20 +18,24 @@
                         <td><%= pf.name %></td>
                         <td><%= pf.adress %></td>
                         <td><%= pf.cloackroom %></td>
+                        <% if (loggedUser) {%>
                         <td>
                             <ul class="list-actions">
                                 <li><a href="/playingfields/details/<%=pf._id%>" class="list-actions-button-details">Szczegóły</a></li>
                                 <li><a href="/playingfields/edit/<%=pf._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete">Usuń</a></li>
+                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')">Usuń</a></li>
                             </ul>
                         </td>
+                        <% } %>
                     </tr>
                 <% } %>
             </tbody>
         </table>
+        <% if (loggedUser) {%>
         <div class="form-buttons">
             <p><a href="playingfields/add" class="button-add">Dodaj nowego obiekt sportowy</a></p>
         </div>
+        <% } %>
 
     </main>
 <%- include('../../fragments/footer.ejs') %>

@@ -36,6 +36,18 @@
                 <% } %>
             </span>
 
+            <% if (formMode == 'createNew') {%>
+                <label for="password">Hasło:<abbr title="required" aria-label="required">*</abbr></label>
+                <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
+                type="password" name="password" id="password" placeholder="min 8 znaków" value="<%= player.password %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+                <span id="errorPassword" class="errors-text">
+                    <% if (validationErrors.find(e => e.path.includes('password'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('password')).message %>
+                    <% } %>
+                </span>
+            <% } %>
+
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
                     <a href="/players/edit/<%= player._id %>" class="list-actions-button-edit">Edytuj</a>

@@ -8,8 +8,10 @@
                     <th>Początek</th>
                     <th>Koniec</th>
                     <th>Obiekt sportowy</th>
+                    <% if (loggedUser) {%>
                     <th>Gracz</th>
                     <th>Akcje</th>
+                    <% } %>
                 </tr>
                 <tbody>
                     <% for (let event of events) { %>
@@ -18,22 +20,26 @@
                             <td><%= event.beginTime.toISOString().split('.')[0].replace('T',' ')%></td>
                             <td><%= event.endTime.toISOString().split('.')[0].replace('T',' ')%></td>
                             <td><%= event.playingField.name%></td>
+                            <% if (loggedUser) {%>
                             <td><%= event.player.lastName%></td>
                             <td>
                                 <ul class="list-actions">
                                     <li><a href="/events/details/<%=event._id%>" class="list-actions-button-details">Szczegóły</a></li>
                                     <li><a href="/events/edit/<%=event._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                                    <li><a href="/events/delete/<%=event._id%>" class="list-actions-button-delete">Usuń</a></li>
+                                    <li><a href="/events/delete/<%=event._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')">Usuń</a></li>
                                 </ul>
                             </td>
+                            <% } %>
                         </tr>
                     <% } %>
                 </tbody>
             </thead>
         </table>
+        <% if (loggedUser) {%>
         <div class="form-buttons">
             <p><a href="events/add" class="button-add">Dodaj nowy event</a></p>
         </div>
+        <% } %>
 
     </main>
 <%- include('../../fragments/footer.ejs') %>

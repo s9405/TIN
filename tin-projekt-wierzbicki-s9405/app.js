@@ -11,6 +11,7 @@ const eventRouter = require('./routes/eventRoute');
 const playerApiRouter = require('./routes/api/PlayerApiRoute');
 const playingFieldApiRouter = require('./routes/api/PlayingFieldApiRoute');
 const eventApiRoute = require('./routes/api/EventApiRoute');
+const authUtils = require('./util/authUtils');
 
 var app = express();
 
@@ -22,10 +23,24 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+const session = require('express-session');
+app.use(session({
+  secret: 'my_secret_password',
+  resave: false
+}));
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if(!res.locals.loginError) {
+      res.locals.loginError = undefined;
+    }
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
-app.use('/players', playerRouter);
+app.use('/players', authUtils.permitAuthenticatedUser, playerRouter);
 app.use('/playingfields', playingFieldRouter);
 app.use('/events', eventRouter);
 app.use('/api/players', playerApiRouter);

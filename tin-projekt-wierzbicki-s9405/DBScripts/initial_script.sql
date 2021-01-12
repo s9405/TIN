@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `tin`.`Player`
       `firstName` VARCHAR(50) NOT NULL ,
       `lastName` VARCHAR(50) NOT NULL ,
       `email` VARCHAR(50) NOT NULL ,
+      `password` VARCHAR(4000) NOT NULL,
       PRIMARY KEY (`_id`),
       UNIQUE INDEX `player_id_UNIQUE` (`_id` ASC)
     ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
@@ -31,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `tin`.`Event`
       CONSTRAINT `playing_field_fk` FOREIGN KEY (`playing_field_id`) REFERENCES `tin`.`Playing_field` (`_id`)
     ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
-INSERT IGNORE INTO `tin`.`Player` (`_id`, `firstName`, `lastName`, `email`) VALUES
-  (1, 'Jan', 'Kowalski', 'jan.kowalski@google.com'),
-  (2, 'Pawel', 'Nowak', 'p.nowak@google.com'),
-  (3, 'Grzegorz', 'Brzeczyszczykiewicz', 'g.b@wp.pl')
+INSERT IGNORE INTO `tin`.`Player` (`_id`, `firstName`, `lastName`, `email`, `password`) VALUES
+  (1, 'Jan', 'Kowalski', 'jan.kowalski@google.com','$2a$08$0HZ/1035e30l4MKQAYDp2uYlc37o0jqrkZdi6L4rW5GmeCiJI3oSm'),
+  (2, 'Pawel', 'Nowak', 'p.nowak@google.com', '$2a$08$0HZ/1035e30l4MKQAYDp2uYlc37o0jqrkZdi6L4rW5GmeCiJI3oSm'),
+  (3, 'Grzegorz', 'Brzeczyszczykiewicz', 'g.b@wp.pl', '$2a$08$0HZ/1035e30l4MKQAYDp2uYlc37o0jqrkZdi6L4rW5GmeCiJI3oSm')
 ;
 
 INSERT IGNORE INTO `tin`.`Playing_field` (`_id`, `name`, `adress`, `cloackroom`) VALUES

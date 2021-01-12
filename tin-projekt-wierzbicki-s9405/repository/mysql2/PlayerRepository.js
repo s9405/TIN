@@ -1,5 +1,7 @@
 const db = require('../../config/mysql2/db');
 const playerSchema = require('../../model/joi/Player');
+const updatePlayerSchema = require('../../model/joi/UpdatePlayerSchema');
+const authUtil = require('../../util/authUtils');
 
 checkEmailUnique = (email, playerId) => {
     let sql, promise;
@@ -36,6 +38,30 @@ exports.getPlayers = () =>{
         throw err;
     });
 };
+
+exports.findByEmail = (email) => {
+    const query = `SELECT p._id as _id, p.firstName, p.lastName, p.email, p.password FROM Player p
+                    WHERE email = ?`;
+    return db.promise().query(query, [email])
+        .then ((results, fields) =>{
+            const firstRow = results[0][0];
+            if (!firstRow) {
+                return {};
+            }
+            const player= {
+                _id: firstRow._id,
+                firstName: firstRow.firstName,
+                lastName: firstRow.lastName,
+                email: firstRow.email,
+                password: firstRow.password
+            }
+            return player;
+        })
+        .catch(err => {
+            console.log(err);
+            throw err;
+        });
+}
 
 exports.getPlayerById = (playerId) => {
     const query = `SELECT p._id as _id, p.firstName, p.lastName, p.email,
@@ -96,8 +122,9 @@ exports.createPlayer = (newPlayerData) => {
                 const firstName = newPlayerData.firstName;
                 const lastName = newPlayerData.lastName;
                 const email = newPlayerData.email;
-                const sql = 'INSERT into Player (firstName, lastName, email) VALUES (?, ?, ?)'
-                return db.promise().execute(sql, [firstName, lastName, email]);
+                const password = authUtil.hashPassword(newPlayerData.password);
+                const sql = 'INSERT into Player (firstName, lastName, email, password) VALUES (?, ?, ?, ?)'
+                return db.promise().execute(sql, [firstName, lastName, email, password]);
             }
         })
         .catch(err => {
@@ -106,7 +133,7 @@ exports.createPlayer = (newPlayerData) => {
 };
 
 exports.updatePlayer = (playerId, playerData) => {
-    const vRes = playerSchema.validate(playerData, { abortEarly: false});
+    const vRes = updatePlayerSchema.validate(playerData, { abortEarly: false});
     if (vRes.error) {
         return Promise.reject(vRes.error);
     }

@@ -38,9 +38,12 @@ const playerSchema = Joi.object({
     email: Joi.string()
         .email()
         .required()
+        .error(errMessages),
+    password: Joi.string()
+        .min(8)
+        .required()
         .error(errMessages)
 });
-
 
 
 module.exports = playerSchema;
