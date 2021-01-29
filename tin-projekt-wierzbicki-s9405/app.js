@@ -12,6 +12,13 @@ const playerApiRouter = require('./routes/api/PlayerApiRoute');
 const playingFieldApiRouter = require('./routes/api/PlayingFieldApiRoute');
 const eventApiRoute = require('./routes/api/EventApiRoute');
 const authUtils = require('./util/authUtils');
+const i18n = require('i18n');
+i18n.configure({
+  locales:['pl', 'en', 'de'],
+  directory: path.join(__dirname, './locales'),
+  objectNotation: true,
+  cookie: 'dosir-lang',
+});
 
 var app = express();
 
@@ -23,6 +30,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(i18n.init);
 const session = require('express-session');
 app.use(session({
   secret: 'my_secret_password',
@@ -37,6 +45,13 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  if(!res.locals.lang) {
+    const currentLang = req.cookies['dosir-lang'];
+    res.locals.lang = currentLang;
+  }
+  next();
+});
 
 
 app.use('/', indexRouter);

@@ -13,9 +13,9 @@ exports.showPlayerList = (req, res, next) => {
 exports.showAddPlayerForm = (req, res, next) => {
     res.render('pages/player/form', {
         player: {},
-        pageTitle: 'Nowy gracz',
+        pageTitle: req.__('player.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj gracza',
+        btnLabel: req.__('player.form.add.btnLabel'),
         formAction: '/players/add',
         navLocation: 'player',
         validationErrors: []
@@ -29,8 +29,8 @@ exports.showEditPlayerForm = (req, res, next) => {
             res.render('pages/player/form', {
                 player: player,
                 formMode: 'edit',
-                pageTitle: 'Edycja gracza',
-                btnLabel: 'Edytuj gracza',
+                pageTitle: req.__('player.form.edit.pageTitle'),
+                btnLabel: req.__('player.form.edit.btnLabel'),
                 formAction: '/players/edit',
                 navLocation: 'player',
                 validationErrors: []
@@ -45,7 +45,7 @@ exports.showPlayerDetails = (req, res, next) => {
             res.render('pages/player/form', {
                 player: player,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły gracza',
+                pageTitle: req.__('player.form.details'),
                 formAction: '',
                 navLocation: 'player',
                 validationErrors: []
@@ -62,9 +62,9 @@ exports.addPlayer = (req, res, next) => {
         .catch(err => {
             res.render('pages/player/form', {
                 player: playerData,
-                pageTitle: 'Dodawanie gracza',
+                pageTitle: req.__('player.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj gracza',
+                btnLabel: req.__('player.form.add.btnLabel'),
                 formAction: '/players/add',
                 navLocation: 'player',
                 validationErrors: err.details
@@ -83,8 +83,8 @@ exports.updatePlayer = (req, res, next) => {
             res.render('pages/player/form', {
                 player: playerData,
                 formMode: 'edit',
-                pageTitle: 'Edycja gracza',
-                btnLabel: 'Edytuj gracza',
+                pageTitle: req.__('player.form.edit.pageTitle'),
+                btnLabel: req.__('player.form.edit.btnLabel'),
                 formAction: '/players/edit',
                 navLocation: 'player',
                 validationErrors: err.details

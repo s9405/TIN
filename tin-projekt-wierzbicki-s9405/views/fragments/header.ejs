@@ -15,29 +15,31 @@
 </header>
 <% if(!loggedUser) { %>
     <div id="login">
-        <h5>Logowanie</h5>
+        <h5><%= __('login.login') %></h5>
         <form class="login-form" method="post" action="/login" novalidate>
-            <label for="loginEmail">Email:</label>
+            <label for="loginEmail"><%= __('login.email') %></label>
             <input type="email" id="loginEmail" name="email">
 
-            <label for="loginPassword">Hasło:</label>
+            <label for="loginPassword"><%= __('login.password') %></label>
             <input type="password" id="loginPassword" name="password">
 
-            <input class="list-actions-button-edit" type="submit" value="Zaloguj się">
+            <input class="list-actions-button-edit" type="submit" value="<%= __('login.button-login') %>">
             <span id="loginErrors" class="errors-text"><%= loginError ? loginError : ''%></span>
         </form>
     </div>
 <% } else { %>
-    <span class="login-span">Jesteś zalogowany jako: <%=loggedUser.firstName + " " + loggedUser.lastName%></span>
-    <a class="list-actions-button-edit" href="/logout">Wyloguj się</a>
+    <span class="login-span"><%= __('login.login-com') %><%=loggedUser.firstName + " " + loggedUser.lastName%></span>
+    <a class="list-actions-button-edit" href="/logout"><%= __('login.button-logout') %></a>
 <% } %>
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"><%= __('nav.main-page') %></a></li>
         <% if (loggedUser) {%>
-        <li><a href="/players" class="<%= navLocation == 'player' ? 'active' : ''%>">Gracze</a></li>
+        <li><a href="/players" class="<%= navLocation == 'player' ? 'active' : ''%>"><%= __('nav.players') %></a></li>
         <% } %>
-        <li><a href="/playingfields" class="<%= navLocation == 'playingField' ? 'active' : ''%>">Obiekty sportowe</a></li>
-        <li><a href="/events" class="<%= navLocation == 'event' ? 'active' : ''%>">Event</a></li>
+        <li><a href="/playingfields" class="<%= navLocation == 'playingField' ? 'active' : ''%>"><%= __('nav.playingFields') %></a></li>
+        <li><a href="/events" class="<%= navLocation == 'event' ? 'active' : ''%>"><%= __('nav.events') %></a></li>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
     </ul>
 </nav>

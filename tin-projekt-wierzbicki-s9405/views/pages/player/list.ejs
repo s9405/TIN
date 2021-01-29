@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Gracze</h2>
+        <h2><%= __('player.list.pageTitle') %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>E-mail</th>
-                    <th>Akcje</th>
+                    <th><%= __('player.fields.firstName') %></th>
+                    <th><%= __('player.fields.lastName') %></th>
+                    <th><%= __('player.fields.email') %></th>
+                    <th><%= __('list.actions.title') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,9 +18,9 @@
                         <td><%= player.email %></td>
                         <td>
                             <ul class="list-actions">
-                                <li><a href="/players/details/<%=player._id%>" class="list-actions-button-details">Szczegóły</a></li>
-                                <li><a href="/players/edit/<%=player._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                                <li><a href="/players/delete/<%=player._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')">Usuń</a></li>
+                                <li><a href="/players/details/<%=player._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                                <li><a href="/players/edit/<%=player._id%>" class="list-actions-button-edit"><%= __('list.actions.edit')%></a></li>
+                                <li><a href="/players/delete/<%=player._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')"><%= __('list.actions.delete')%></a></li>
                             </ul>
                         </td>
                     </tr>
@@ -28,7 +28,7 @@
             </tbody>
         </table>
         <div class="form-buttons">
-            <p><a href="players/add" class="button-add">Dodaj nowego gracza</a></p>
+            <p><a href="players/add" class="button-add"><%= __('player.list.addNew') %></a></p>
         </div>
 
     </main>

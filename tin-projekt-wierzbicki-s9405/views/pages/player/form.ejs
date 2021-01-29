@@ -5,10 +5,13 @@
         <h2><%= pageTitle %></h2>
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
             <input type="hidden" name="_id" value="<%= player._id %>">
+            <div style="display: none">
+                <span id="errorMessage-required"><%= __('validationMessage.fileRequired') %></span>
+            </div>
 
-            <label for="firstName">Imię:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="firstName"><%= __('player.form.fields.firstName') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" 
-            type="text" name="firstName" id="firstName" placeholder="2-20 znaków" value="<%= player.firstName %>"
+            type="text" name="firstName" id="firstName" placeholder="<%= __('player.form.placeholder.firstName') %>" value="<%= player.firstName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
             <span id="errorFirstName" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
@@ -16,9 +19,9 @@
                 <% } %>
             </span>
 
-            <label for="lastName">Nazwisko:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="lastName"><%= __('player.form.fields.lastName') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" 
-            type="text" name="lastName" id="lastName" placeholder="2-20 znaków" value="<%= player.lastName %>"
+            type="text" name="lastName" id="lastName" placeholder="<%= __('player.form.placeholder.lastName') %>" value="<%= player.lastName %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
             <span id="errorLastName" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
@@ -26,9 +29,9 @@
                 <% } %>
             </span>
 
-            <label for="email">E-mail:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="email"><%= __('player.form.fields.email') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"
-            type="email" name="email" id="email" placeholder="np. nazwa@domena.pl" value="<%= player.email %>"
+            type="email" name="email" id="email" placeholder="<%= __('player.form.placeholder.email') %>" value="<%= player.email %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
             <span id="errorEmail" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('email'))) { %>
@@ -37,9 +40,9 @@
             </span>
 
             <% if (formMode == 'createNew') {%>
-                <label for="password">Hasło:<abbr title="required" aria-label="required">*</abbr></label>
+                <label for="password"><%= __('player.form.fields.password') %><abbr title="required" aria-label="required">*</abbr></label>
                 <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
-                type="password" name="password" id="password" placeholder="min 8 znaków" value="<%= player.password %>"
+                type="password" name="password" id="password" placeholder="<%= __('player.form.placeholder.password') %>" value="<%= player.password %>"
                 <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
                 <span id="errorPassword" class="errors-text">
                     <% if (validationErrors.find(e => e.path.includes('password'))) { %>
@@ -50,20 +53,20 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a href="/players/edit/<%= player._id %>" class="list-actions-button-edit">Edytuj</a>
+                    <a href="/players/edit/<%= player._id %>" class="list-actions-button-edit"><%= __('form.actions.edit') %></a>
                 </div>
             <% } %>
 
         
         <% if (formMode == 'showDetails') { %>
-        <h2>Szczegóły eventów</h2>
+        <h2><%= __('player.form.event.tableName') %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwa obiektu</th>
-                    <th>Początek</th>
-                    <th>Koniec</th>
-                    <th>Ilość graczy</th>
+                    <th><%= __('player.form.event.pfName') %></th>
+                    <th><%= __('player.form.event.beginTime') %></th>
+                    <th><%= __('player.form.event.endTime') %></th>
+                    <th><%= __('player.form.event.maxNumberOfPlayer') %></th>
                 </tr>
             </thead>
             <tbody>
@@ -83,9 +86,9 @@
             <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
                 <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-                <a class="form-button-cancel" href="/players">Anuluj</a>
+                <a class="form-button-cancel" href="/players"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/players">Powrót</a>
+                <a class="form-button-cancel" href="/players"><%= __('form.actions.return') %></a>
             <% } %>
         </div>
     </form>

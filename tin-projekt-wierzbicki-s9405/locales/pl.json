@@ -1,0 +1,189 @@
+{
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"login": {
+		"login": "Logowanie",
+		"email": "Email:",
+		"password": "Hasło:",
+		"button-login": "Zaloguj się",
+		"button-logout": "Wyloguj się",
+		"login-com": "Jesteś zalogowany jako: "
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"players": "Gracze",
+		"playingFields": "Obiekty sportowe",
+		"events": "Eventy"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"pf": {
+		"fields": {
+			"name": "Nazwa",
+			"adress": "Adres",
+			"cloackroom": "Szatnia"
+		},
+		"list": {
+			"title": "Obiekty sportowe",
+			"addNew": "Dodaj nowy obiekt sportowy",
+			"noData": "Brak Obiektu sportowego w bazie",
+			"pageTitle": "Lista obiektów sportowych"
+		},
+		"form": {
+			"event": {
+				"tableName": "Historia eventów",
+				"playerName": "Nazwisko gracza",
+				"beginTime": "Początek",
+				"endTime": "Koniec",
+				"maxNumberOfPlayer": "Ilość graczy"
+			},
+			"fields": {
+				"name": "Nazwa:",
+				"adress": "Adres:",
+				"cloackroom": "Szatnia:"
+			},
+			"add": {
+				"pageTitle": "Dodawanie obiektu sportowego",
+				"btnLabel": "Dodaj obiekt sportowy",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano obiekt sportowy"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja obiektu sportowego",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano obiekt sportowy"
+				}
+			},
+			"details": "Szczegóły obiektu sportowego",
+			"placeholder": {
+				"name": "2-60 znaków",
+				"adress": "2-60 znaków",
+				"cloackroom": "0 lub 1"
+			}
+		}
+	},
+	"player": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"email": "Email"
+		},
+		"list": {
+			"title": "Gracze",
+			"addNew": "Dodaj nowego gracza",
+			"noData": "Brak gracza w bazie",
+			"pageTitle": "Lista graczy"
+		},
+		"form": {
+			"event": {
+				"tableName": "Historia eventów",
+				"pfName": "Nazwa obiektu",
+				"beginTime": "Początek",
+				"endTime": "Koniec",
+				"maxNumberOfPlayer": "Ilość graczy"
+			},
+			"fields": {
+				"firstName": "Imię:",
+				"lastName": "Nazwisko:",
+				"email": "E-mail:",
+				"password": "Hasło:"
+			},
+			"add": {
+				"pageTitle": "Dodawanie gracza",
+				"btnLabel": "Dodaj gracza",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano gracza"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja gracza",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano gracza"
+				}
+			},
+			"details": "Szczegóły gracza",
+			"placeholder": {
+				"firstName": "2-20 znaków",
+				"lastName": "2-20 znaków",
+				"email": "np. nazwa@domena.pl",
+				"password": "min 8 znaków"
+			}
+		}
+	},
+	"event": {
+		"fields": {
+			"numberOfPlayer": "Ilość graczy",
+			"beginTime": "Początek",
+			"endTime": "Koniec",
+			"playingField": "Obiekt sportowy",
+			"player": "Gracz"
+		},
+		"list": {
+			"title": "Eventy",
+			"addNew": "Dodaj nowy event",
+			"noData": "Brak gracza w bazie",
+			"pageTitle": "Lista eventów"
+		},
+		"form": {
+			"event": {
+				"tableName": "Historia eventów",
+				"pfName": "Nazwa obiektu",
+				"beginTime": "Początek",
+				"endTime": "Koniec",
+				"maxNumberOfPlayer": "Ilość graczy"
+			},
+			"fields": {
+				"player": "Gracz:",
+				"playingField": "Obiekt sportowy:",
+				"beginTime": "Początek:",
+				"endTime": "Koniec:",
+				"numberOfPlayer": "Ilość graczy:"
+			},
+			"add": {
+				"pageTitle": "Nowy event",
+				"btnLabel": "Dodaj event",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano gracza"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja eventu",
+				"btnLabel": "Edytuj event",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano gracza"
+				}
+			},
+			"details": "Szczegóły gracza",
+			"select": {
+				"player": "--- Wybierz gracza ---",
+				"playingField": "--- Wybierz obiekt sportowy ---"
+			}
+		}
+	},
+	"validationMessage": {
+		"fileRequired": "validationMessage.fileRequired"
+	}
+}

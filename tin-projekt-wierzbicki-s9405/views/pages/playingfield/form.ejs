@@ -5,9 +5,9 @@
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
             <input type="hidden" name="_id" value="<%= pf._id %>">
 
-            <label for="name">Nazwa:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="name"><%= __('pf.form.fields.name') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
-            type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= pf.name %>"
+            type="text" name="name" id="name" placeholder="<%= __('pf.form.placeholder.name') %>" value="<%= pf.name %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorName" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('name'))) { %>
@@ -15,9 +15,9 @@
                 <% } %>
             </span>
 
-            <label for="adress">Adres:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="adress"><%= __('pf.form.fields.adress') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('adress')) ? 'error-input' : '' %>"
-            type="text" name="adress" id="adress" placeholder="2-60 znaków" value="<%= pf.adress %>"
+            type="text" name="adress" id="adress" placeholder="<%= __('pf.form.placeholder.adress') %>" value="<%= pf.adress %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorAdress" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('adress'))) { %>
@@ -25,9 +25,9 @@
                 <% } %>
             </span>
 
-            <label for="cloackroom">Szatnia:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="cloackroom"><%= __('pf.form.fields.cloackroom') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('cloackroom')) ? 'error-input' : '' %>"
-            type="text" name="cloackroom" id="cloackroom" placeholder="0 lub 1" value="<%= pf.cloackroom %>"
+            type="text" name="cloackroom" id="cloackroom" placeholder="<%= __('pf.form.placeholder.cloackroom') %>" value="<%= pf.cloackroom %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
             <span id="errorCloackroom" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('cloackroom'))) { %>
@@ -37,19 +37,19 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a href="/playingfields/edit/<%= pf._id %>" class="list-actions-button-edit">Edytuj</a>
+                    <a href="/playingfields/edit/<%= pf._id %>" class="list-actions-button-edit"><%= __('form.actions.edit') %></a>
                 </div>
             <% } %>
 
             <% if (formMode == 'showDetails') { %>
-                <h2>Szczegóły eventów</h2>
+                <h2><%= __('pf.form.event.tableName') %></h2>
                 <table class="table-list">
                     <thead>
                         <tr>
-                            <th>Nazwisko gracza</th>
-                            <th>Początek</th>
-                            <th>Koniec</th>
-                            <th>Ilość graczy</th>
+                            <th><%= __('pf.form.event.playerName') %></th>
+                            <th><%= __('pf.form.event.beginTime') %></th>
+                            <th><%= __('pf.form.event.endTime') %></th>
+                            <th><%= __('pf.form.event.maxNumberOfPlayer') %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,9 +69,9 @@
                 <p id="errorsSummary" class="errors-text"></p>
                 <% if (formMode != 'showDetails') { %>
                     <input class="form-button-submit" type="submit" value="<%=btnLabel%>"  />
-                    <a class="form-button-cancel" href="/playingfields">Anuluj</a>
+                    <a class="form-button-cancel" href="/playingfields"><%= __('form.actions.cancel') %></a>
                 <% } else { %>
-                    <a class="form-button-cancel" href="/playingfields">Powrót</a>
+                    <a class="form-button-cancel" href="/playingfields"><%= __('form.actions.return') %></a>
                 <% } %>
             </div>
         </form>

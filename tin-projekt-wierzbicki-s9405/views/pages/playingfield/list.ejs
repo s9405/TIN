@@ -1,14 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Gracze</h2>
+        <h2><%= __('nav.playingFields') %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Adres</th>
-                    <th>Szatnia</th>
+                    <th><%= __('pf.fields.name') %></th>
+                    <th><%= __('pf.fields.adress') %></th>
+                    <th><%= __('pf.fields.cloackroom') %></th>
                     <% if (loggedUser) {%>
-                    <th>Akcje</th>
+                    <th><%= __('list.actions.title') %></th>
                     <% } %>
                 </tr>
             </thead>
@@ -21,9 +21,9 @@
                         <% if (loggedUser) {%>
                         <td>
                             <ul class="list-actions">
-                                <li><a href="/playingfields/details/<%=pf._id%>" class="list-actions-button-details">Szczegóły</a></li>
-                                <li><a href="/playingfields/edit/<%=pf._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')">Usuń</a></li>
+                                <li><a href="/playingfields/details/<%=pf._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                                <li><a href="/playingfields/edit/<%=pf._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a></li>
+                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')"><%= __('list.actions.delete') %></a></li>
                             </ul>
                         </td>
                         <% } %>
@@ -33,7 +33,7 @@
         </table>
         <% if (loggedUser) {%>
         <div class="form-buttons">
-            <p><a href="playingfields/add" class="button-add">Dodaj nowego obiekt sportowy</a></p>
+            <p><a href="playingfields/add" class="button-add"><%= __('pf.list.addNew') %></a></p>
         </div>
         <% } %>
 

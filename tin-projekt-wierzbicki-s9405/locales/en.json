@@ -1,0 +1,189 @@
+{
+	"main-page": {
+		"content": "Main Page"
+	},
+	"login": {
+		"login": "Login",
+		"email": "Email:",
+		"password": "Password:",
+		"button-login": "Log in",
+		"button-logout": "Log out",
+		"login-com": "You are logged as: "
+	},
+	"nav": {
+		"main-page": "Main page",
+		"players": "Players",
+		"playingFields": "Playing fields",
+		"events": "Events"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"pf": {
+		"fields": {
+			"name": "Name",
+			"adress": "Adress",
+			"cloackroom": "Cloackroom"
+		},
+		"list": {
+			"title": "Playing fields",
+			"addNew": "Add new playing field",
+			"noData": "No playing field in database",
+			"pageTitle": "List of playing fields"
+		},
+		"form": {
+			"event": {
+				"tableName": "History of event",
+				"playerName": "Player name",
+				"beginTime": "Begin",
+				"endTime": "End",
+				"maxNumberOfPlayer": "Number of players"
+			},
+			"fields": {
+				"name": "Name:",
+				"adress": "Adress:",
+				"cloackroom": "Cloackroom:"
+			},
+			"add": {
+				"pageTitle": "Adding a new playing field",
+				"btnLabel": "Add playing field",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new playing field has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a playing field",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The player has been successfully update"
+				}
+			},
+			"details": "Playing field details",
+			"placeholder": {
+				"name": "2-60 characters",
+				"adress": "2-60 characters",
+				"cloackroom": "0 or 1"
+			}
+		}
+	},
+	"player": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email"
+		},
+		"list": {
+			"title": "Players",
+			"addNew": "Add new player",
+			"noData": "No player in database",
+			"pageTitle": "List of players"
+		},
+		"form": {
+			"event": {
+				"tableName": "History of event",
+				"pfName": "Playing field name",
+				"beginTime": "Begin",
+				"endTime": "End",
+				"maxNumberOfPlayer": "Number of players"
+			},
+			"fields": {
+				"firstName": "First name:",
+				"lastName": "Last name:",
+				"email": "E-mail:",
+				"password": "Password:"
+			},
+			"add": {
+				"pageTitle": "Adding a new player",
+				"btnLabel": "Add the player",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new player has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a player",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The player has been successfully updated"
+				}
+			},
+			"details": "Player details",
+			"placeholder": {
+				"firstName": "2-20 characters",
+				"lastName": "2-20 characters",
+				"email": "e.g. name@domain.pl",
+				"password": "min 8 characters"
+			}
+		}
+	},
+	"event": {
+		"fields": {
+			"numberOfPlayer": "Number of player",
+			"beginTime": "Begin time",
+			"endTime": "End time",
+			"playingField": "Playing field",
+			"player": "Player"
+		},
+		"list": {
+			"title": "Events",
+			"addNew": "Add new event",
+			"noData": "No player in database",
+			"pageTitle": "List of events"
+		},
+		"form": {
+			"event": {
+				"tableName": "History of event",
+				"pfName": "Playing field name",
+				"beginTime": "Begin",
+				"endTime": "End",
+				"maxNumberOfPlayer": "Number of players"
+			},
+			"fields": {
+				"player": "Player:",
+				"playingField": "Playing field:",
+				"beginTime": "Begin time:",
+				"endTime": "End time:",
+				"numberOfPlayer": "Number of player:"
+			},
+			"add": {
+				"pageTitle": "New event",
+				"btnLabel": "Add the event",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new player has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a event",
+				"btnLabel": "Edit event",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The player has been successfully updated"
+				}
+			},
+			"details": "Event details",
+			"select": {
+				"player": "--- Select player ---",
+				"playingField": "--- Select playing field ---"
+			}
+		}
+	},
+	"validationMessage": {
+		"fileRequired": "validationMessage.fileRequired"
+	}
+}

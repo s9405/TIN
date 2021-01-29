@@ -13,9 +13,9 @@ exports.showPlayingFieldList = (req, res, next) => {
 exports.showAddPlayingFieldForm = (req, res, next) => {
     res.render('pages/playingfield/form', {
         pf: {},
-        pageTitle: 'Nowy obiekt sportowy',
+        pageTitle: req.__('pf.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj obiekt sportowy',
+        btnLabel: req.__('pf.form.add.btnLabel'),
         formAction: '/playingfields/add',
         navLocation: 'playingField',
         validationErrors: []
@@ -29,8 +29,8 @@ exports.showEditPlayingFieldForm = (req, res, next) => {
             res.render('pages/playingfield/form', {
                 pf: pf,
                 formMode: 'edit',
-                pageTitle: 'Edycja obiektu sportowego',
-                btnLabel: 'Edytuj obiekt sportowy',
+                pageTitle: req.__('pf.form.edit.pageTitle'),
+                btnLabel: req.__('pf.form.edit.btnLabel'),
                 formAction: '/playingfields/edit',
                 navLocation: 'playingField',
                 validationErrors: []
@@ -45,7 +45,7 @@ exports.showPlayingFieldDetails = (req, res, next) => {
             res.render('pages/playingfield/form', {
                 pf: pf,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły obiektu sportowego',
+                pageTitle: req.__('pf.form.details'),
                 formAction: '',
                 navLocation: 'playingField',
                 validationErrors: []
@@ -62,9 +62,9 @@ exports.addPlayingField = (req, res, next) => {
         .catch(err =>{
             res.render('pages/playingfield/form', {
                 pf: pfData,
-                pageTitle: 'Dodawanie obiektu sportowego',
+                pageTitle: req.__('pf.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj obiekt sportowy',
+                btnLabel: req.__('pf.form.add.btnLabel'),
                 formAction: '/playingfields/add',
                 navLocation: 'playingField',
                 validationErrors: err.details
@@ -83,8 +83,8 @@ exports.updatePlayingField = (req, res, next) => {
             res.render('pages/playingfield/form', {
                 pf: pfData,
                 formMode: 'edit',
-                pageTitle: 'Edycja obiektu sportowego',
-                btnLabel: 'Edytuj obiekt sportowy',
+                pageTitle: req.__('pf.form.edit.pageTitle'),
+                btnLabel: req.__('pf.form.edit.btnLabel'),
                 formAction: '/playingfields/edit',
                 navLocation: 'playingField',
                 validationErrors: err.details

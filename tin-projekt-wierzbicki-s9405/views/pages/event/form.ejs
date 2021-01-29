@@ -5,11 +5,15 @@
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
             <input type="hidden", name="_id" value="<%= event._id%>">
 
-            <label for="player">Gracz:<abbr title="required" aria-label="required">*</abbr></label>
+            <div style="display: none">
+                <span id="errorMessage-required"><%= __('validationMessage.fileRequired') %></span>
+            </div>
+
+            <label for="player"><%= __('event.form.fields.player') %><abbr title="required" aria-label="required">*</abbr></label>
             <select class="<%= validationErrors.find(e => e.path.includes('playerId')) ? 'error-input' : '' %>"
             id="player" name="playerId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
                 <% if (formMode == 'createNew') { %>
-                <option value="" selected>--- Wybierz gracza ---</option>
+                <option value="" selected><%= __('event.form.select.player') %></option>
                 <% } %>
                 <% for (let i=0; i<allPlayers.length; i++) { let player = allPlayers[i]; %>
                     <option value="<%= player._id%>" label="<%= player.firstName + ' ' + player.lastName %>"
@@ -22,11 +26,11 @@
                 <% } %>
             </span>
 
-            <label for="playing-field">Obiekt sportowy:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="playing-field"><%= __('event.form.fields.playingField') %><abbr title="required" aria-label="required">*</abbr></label>
             <select class="<%= validationErrors.find(e => e.path.includes('playingFieldId')) ? 'error-input' : '' %>"
             id="playingField" name="playingFieldId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
                 <% if (formMode == 'createNew') { %>
-                <option value="" selected>--- Wybierz obiekt sportowy ---</option>
+                <option value="" selected><%= __('event.form.select.playingField') %></option>
                 <% } %>
                 <% for (let i=0; i<allPlayingFields.length; i++) { let playingField = allPlayingFields[i]; %>
                     <option value="<%= playingField._id%>" label="<%= playingField.name %>"
@@ -39,7 +43,7 @@
                 <% } %>
             </span>
 
-            <label for="begin-time">Początek:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="begin-time"><%= __('event.form.fields.beginTime') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('beginTime')) ? 'error-input' : '' %>"
             type="datetime-local" name="beginTime" id="beginTime" value="<%= event.beginTime ? event.beginTime.toISOString().split('.')[0] : '' %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
@@ -49,7 +53,7 @@
                 <% } %>
             </span>
 
-            <label for="end-time">Koniec:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="end-time"><%= __('event.form.fields.endTime') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('endTime')) ? 'error-input' : '' %>"
             type="datetime-local" name="endTime" id="endTime" 
             value="<%= event.endTime ? event.endTime.toISOString().split('.')[0]  : ''%>"
@@ -60,7 +64,7 @@
                 <% } %>
             </span>
 
-            <label for="max-number-of-player">Ilość graczy:<abbr title="required" aria-label="required">*</abbr></label>
+            <label for="max-number-of-player"><%= __('event.form.fields.numberOfPlayer') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('maxNumberOfPlayer')) ? 'error-input' : '' %>"
             type="number" name="maxNumberOfPlayer" id="MaxNumberOfPlayer" value="<%= event.maxNumberOfPlayer %>"
             <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
@@ -72,7 +76,7 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a href="/events/edit/<%= event._id %>" class="list-actions-button-edit">Edytuj</a>
+                    <a href="/events/edit/<%= event._id %>" class="list-actions-button-edit"><%= __('form.actions.edit') %></a>
                 </div>
             <% } %>
 
@@ -80,9 +84,9 @@
                 <p id="errorsSummary" class="errors-text"></p>
                 <% if (formMode != 'showDetails') { %>
                     <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-                    <a class="form-button-cancel" href="/events">Anuluj</a>
+                    <a class="form-button-cancel" href="/events"><%= __('form.actions.cancel') %></a>
                 <% } else { %>
-                    <a class="form-button-cancel" href="/events">Powrót</a>
+                    <a class="form-button-cancel" href="/events"><%= __('form.actions.return') %></a>
                 <% } %>
             </div>
         </form>

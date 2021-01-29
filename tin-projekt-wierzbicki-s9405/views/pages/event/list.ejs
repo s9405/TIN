@@ -1,16 +1,16 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Eventy</h2>
+        <h2><%= __('event.list.pageTitle') %></h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Ilość graczy</th>
-                    <th>Początek</th>
-                    <th>Koniec</th>
-                    <th>Obiekt sportowy</th>
+                    <th><%= __('event.fields.numberOfPlayer') %></th>
+                    <th><%= __('event.fields.beginTime') %></th>
+                    <th><%= __('event.fields.endTime') %></th>
+                    <th><%= __('event.fields.playingField') %></th>
                     <% if (loggedUser) {%>
-                    <th>Gracz</th>
-                    <th>Akcje</th>
+                    <th><%= __('event.fields.player') %></th>
+                    <th><%= __('list.actions.title') %></th>
                     <% } %>
                 </tr>
                 <tbody>
@@ -24,9 +24,9 @@
                             <td><%= event.player.lastName%></td>
                             <td>
                                 <ul class="list-actions">
-                                    <li><a href="/events/details/<%=event._id%>" class="list-actions-button-details">Szczegóły</a></li>
-                                    <li><a href="/events/edit/<%=event._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                                    <li><a href="/events/delete/<%=event._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')">Usuń</a></li>
+                                    <li><a href="/events/details/<%=event._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                                    <li><a href="/events/edit/<%=event._id%>" class="list-actions-button-edit"><%= __('list.actions.edit')%></a></li>
+                                    <li><a href="/events/delete/<%=event._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')"><%= __('list.actions.delete')%></a></li>
                                 </ul>
                             </td>
                             <% } %>
@@ -37,7 +37,7 @@
         </table>
         <% if (loggedUser) {%>
         <div class="form-buttons">
-            <p><a href="events/add" class="button-add">Dodaj nowy event</a></p>
+            <p><a href="events/add" class="button-add"><%= __('event.list.addNew') %></a></p>
         </div>
         <% } %>
 
