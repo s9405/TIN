@@ -41,7 +41,9 @@
 			"title": "Playing fields",
 			"addNew": "Add new playing field",
 			"noData": "No playing field in database",
-			"pageTitle": "List of playing fields"
+			"pageTitle": "List of playing fields",
+			"deleteConfirm": "Do you want delete playing field?",
+			"deleteAlert": "Playing field delete"
 		},
 		"form": {
 			"event": {
@@ -59,18 +61,12 @@
 			"add": {
 				"pageTitle": "Adding a new playing field",
 				"btnLabel": "Add playing field",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The new playing field has been successfully created"
-				}
+				"alertMessage": "The playing field added"
 			},
 			"edit": {
 				"pageTitle": "Editing a playing field",
 				"btnLabel": "Save changes",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The player has been successfully update"
-				}
+				"alertMessage": "The playing field edited"
 			},
 			"details": "Playing field details",
 			"placeholder": {
@@ -90,7 +86,9 @@
 			"title": "Players",
 			"addNew": "Add new player",
 			"noData": "No player in database",
-			"pageTitle": "List of players"
+			"pageTitle": "List of players",
+			"deleteConfirm": "Do you want delete player?",
+			"deleteAlert": "Player delete"
 		},
 		"form": {
 			"event": {
@@ -109,18 +107,12 @@
 			"add": {
 				"pageTitle": "Adding a new player",
 				"btnLabel": "Add the player",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The new player has been successfully created"
-				}
+				"alertMessage": "Player added"
 			},
 			"edit": {
 				"pageTitle": "Editing a player",
 				"btnLabel": "Save changes",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The player has been successfully updated"
-				}
+				"alertMessage": "Player edited"
 			},
 			"details": "Player details",
 			"placeholder": {
@@ -143,7 +135,9 @@
 			"title": "Events",
 			"addNew": "Add new event",
 			"noData": "No player in database",
-			"pageTitle": "List of events"
+			"pageTitle": "List of events",
+			"deleteConfirm": "Do you want delete event?",
+			"deleteAlert": "Event delete"
 		},
 		"form": {
 			"event": {
@@ -163,18 +157,12 @@
 			"add": {
 				"pageTitle": "New event",
 				"btnLabel": "Add the event",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The new player has been successfully created"
-				}
+				"alertMessage": "Event added"
 			},
 			"edit": {
 				"pageTitle": "Editing a event",
 				"btnLabel": "Edit event",
-				"confirm": {
-					"header": "Confirmation",
-					"text": "The player has been successfully updated"
-				}
+				"alertMessage": "Event edited"
 			},
 			"details": "Event details",
 			"select": {

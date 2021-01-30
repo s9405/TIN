@@ -41,7 +41,9 @@
 			"title": "Obiekty sportowe",
 			"addNew": "Dodaj nowy obiekt sportowy",
 			"noData": "Brak Obiektu sportowego w bazie",
-			"pageTitle": "Lista obiektów sportowych"
+			"pageTitle": "Lista obiektów sportowych",
+			"deleteConfirm": "Czy chcesz usunąć obiekt sportowy?",
+			"deleteAlert": "Obiekt sportowy usunięty"
 		},
 		"form": {
 			"event": {
@@ -59,18 +61,12 @@
 			"add": {
 				"pageTitle": "Dodawanie obiektu sportowego",
 				"btnLabel": "Dodaj obiekt sportowy",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano obiekt sportowy"
-				}
+				"alertMessage": "Obiekt sportowy dodany"
 			},
 			"edit": {
 				"pageTitle": "Edycja obiektu sportowego",
 				"btnLabel": "Zapisz zmiany",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano obiekt sportowy"
-				}
+				"alertMessage": "Obiekt sportowy zedytowany"
 			},
 			"details": "Szczegóły obiektu sportowego",
 			"placeholder": {
@@ -90,7 +86,9 @@
 			"title": "Gracze",
 			"addNew": "Dodaj nowego gracza",
 			"noData": "Brak gracza w bazie",
-			"pageTitle": "Lista graczy"
+			"pageTitle": "Lista graczy",
+			"deleteConfirm": "Czy chcesz usunąć gracza?",
+			"deleteAlert": "Gracz usunięty"
 		},
 		"form": {
 			"event": {
@@ -109,18 +107,12 @@
 			"add": {
 				"pageTitle": "Dodawanie gracza",
 				"btnLabel": "Dodaj gracza",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano gracza"
-				}
+				"alertMessage": "Gracz dodany"
 			},
 			"edit": {
 				"pageTitle": "Edycja gracza",
 				"btnLabel": "Zapisz zmiany",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano gracza"
-				}
+				"alertMessage": "Gracz zedytowany"
 			},
 			"details": "Szczegóły gracza",
 			"placeholder": {
@@ -143,7 +135,9 @@
 			"title": "Eventy",
 			"addNew": "Dodaj nowy event",
 			"noData": "Brak gracza w bazie",
-			"pageTitle": "Lista eventów"
+			"pageTitle": "Lista eventów",
+			"deleteConfirm": "Czy chcesz usunąć event?",
+			"deleteAlert": "Event usunięty"
 		},
 		"form": {
 			"event": {
@@ -163,18 +157,12 @@
 			"add": {
 				"pageTitle": "Nowy event",
 				"btnLabel": "Dodaj event",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano gracza"
-				}
+				"alertMessage": "Event dodany"
 			},
 			"edit": {
 				"pageTitle": "Edycja eventu",
 				"btnLabel": "Edytuj event",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano gracza"
-				}
+				"alertMessage": "Event zedytowany"
 			},
 			"details": "Szczegóły gracza",
 			"select": {

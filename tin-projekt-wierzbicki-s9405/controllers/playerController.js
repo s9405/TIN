@@ -16,6 +16,7 @@ exports.showAddPlayerForm = (req, res, next) => {
         pageTitle: req.__('player.form.add.pageTitle'),
         formMode: 'createNew',
         btnLabel: req.__('player.form.add.btnLabel'),
+        alertMessage: req.__('player.form.add.alertMessage'),
         formAction: '/players/add',
         navLocation: 'player',
         validationErrors: []
@@ -31,6 +32,7 @@ exports.showEditPlayerForm = (req, res, next) => {
                 formMode: 'edit',
                 pageTitle: req.__('player.form.edit.pageTitle'),
                 btnLabel: req.__('player.form.edit.btnLabel'),
+                alertMessage: req.__('player.form.edit.alertMessage'),
                 formAction: '/players/edit',
                 navLocation: 'player',
                 validationErrors: []

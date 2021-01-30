@@ -85,7 +85,7 @@
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
-                <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                <input class="form-button-submit" type="submit" value="<%=btnLabel%>" onclick="return alert('<%=alertMessage%>')"/>
                 <a class="form-button-cancel" href="/players"><%= __('form.actions.cancel') %></a>
             <% } else { %>
                 <a class="form-button-cancel" href="/players"><%= __('form.actions.return') %></a>

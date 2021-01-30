@@ -1,4 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
+<script>
+    function confirmAlert() {
+        if (confirm("<%= __('pf.list.deleteConfirm') %>")){
+            alert("<%= __('pf.list.deleteAlert') %>");
+        }
+    }
+</script>
     <main>
         <h2><%= __('nav.playingFields') %></h2>
         <table class="table-list">
@@ -23,7 +30,7 @@
                             <ul class="list-actions">
                                 <li><a href="/playingfields/details/<%=pf._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
                                 <li><a href="/playingfields/edit/<%=pf._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a></li>
-                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete" onclick="return confirm('Czy chcesz usunąć?')"><%= __('list.actions.delete') %></a></li>
+                                <li><a href="/playingfields/delete/<%=pf._id%>" class="list-actions-button-delete" onclick="confirmAlert()"><%= __('list.actions.delete') %></a></li>
                             </ul>
                         </td>
                         <% } %>

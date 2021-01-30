@@ -16,6 +16,7 @@ exports.showAddPlayingFieldForm = (req, res, next) => {
         pageTitle: req.__('pf.form.add.pageTitle'),
         formMode: 'createNew',
         btnLabel: req.__('pf.form.add.btnLabel'),
+        alertMessage: req.__('pf.form.add.alertMessage'),
         formAction: '/playingfields/add',
         navLocation: 'playingField',
         validationErrors: []
@@ -31,6 +32,7 @@ exports.showEditPlayingFieldForm = (req, res, next) => {
                 formMode: 'edit',
                 pageTitle: req.__('pf.form.edit.pageTitle'),
                 btnLabel: req.__('pf.form.edit.btnLabel'),
+                alertMessage: req.__('pf.form.edit.alertMessage'),
                 formAction: '/playingfields/edit',
                 navLocation: 'playingField',
                 validationErrors: []
