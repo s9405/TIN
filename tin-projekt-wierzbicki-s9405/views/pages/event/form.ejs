@@ -1,4 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
+<script>
+    function showAllert(){
+        if(validateForm()){
+            alert('<%=alertMessage%>')
+        }
+    }
+</script>
     <main>
         <script type="application/javascript" src="/js/validationEventForm.js"></script>
         <h2><%= pageTitle%></h2>
@@ -7,6 +14,10 @@
 
             <div style="display: none">
                 <span id="errorMessage-required"><%= __('validationMessage.fileRequired') %></span>
+                <span id="errorMessage-number-range"><%= __('validationMessage.numberRange') %></span>
+                <span id="errorMessage-number"><%= __('validationMessage.number') %></span>
+                <span id="errorMessage-end-time"><%= __('validationMessage.endTime') %></span>
+                <span id="errorMessage-summary"><%= __('validationMessage.summary') %></span>
             </div>
 
             <label for="player"><%= __('event.form.fields.player') %><abbr title="required" aria-label="required">*</abbr></label>
@@ -83,7 +94,7 @@
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
                 <% if (formMode != 'showDetails') { %>
-                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" onclick="return alert('<%=alertMessage%>')"/>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" onclick="showAllert()"/>
                     <a class="form-button-cancel" href="/events"><%= __('form.actions.cancel') %></a>
                 <% } else { %>
                     <a class="form-button-cancel" href="/events"><%= __('form.actions.return') %></a>

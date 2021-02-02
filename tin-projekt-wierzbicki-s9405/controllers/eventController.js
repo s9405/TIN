@@ -57,7 +57,7 @@ exports.showAddEventForm = (req, res, next) => {
                 allPlayers: allPlayers,
                 allPlayingFields: allPlayingFields,
                 pageTitle: req.__('event.form.add.pageTitle'),
-                alertMessage: req.__('event.form.edit.alertMessage'),
+                alertMessage: req.__('event.form.add.alertMessage'),
                 btnLabel: req.__('event.form.add.btnLabel'),
                 formAction: '/events/add',
                 navLocation: 'event',
@@ -97,7 +97,7 @@ exports.showEventDetails = (req, res, next) => {
 exports.addEvent = (req, res, next) => {
     const eventData = {...req.body };
     let allPlayers, allPlayingFields;
-    EventRepository.createEvent(eventData)
+    EventRepository.createEvent(eventData, req)
         .then( result => {
             res.redirect('/events');
         })
@@ -122,6 +122,7 @@ exports.addEvent = (req, res, next) => {
                     pageTitle: req.__('player.form.add.pageTitle'),
                     formMode: 'createNewErr',
                     btnLabel: req.__('player.form.add.btnLabel'),
+                    alertMessage: req.__('event.form.add.alertMessage'),
                     formAction: '/events/add',
                     navLocation: 'event',
                     validationErrors: err.details
@@ -135,7 +136,7 @@ exports.updateEvent = (req, res, next) => {
     let eventD;
     const eventId = req.body._id
     const eventData = { ...req.body };
-    EventRepository.updateEvent(eventId, eventData)
+    EventRepository.updateEvent(eventId, eventData, req)
         .then( result => {
             res.redirect('/events');
         })
@@ -158,6 +159,7 @@ exports.updateEvent = (req, res, next) => {
                     formMode: 'edit',
                     pageTitle: req.__('event.form.edit.pageTitle'),
                     btnLabel: req.__('event.form.edit.btnLabel'),
+                    alertMessage: req.__('event.form.edit.alertMessage'),
                     formAction: '/events/edit',
                     navLocation: 'event',
                     validationErrors: err.details

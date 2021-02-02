@@ -80,18 +80,18 @@ exports.getEventById = (eventId) => {
         });
 };
 
-exports.createEvent = (newEventData) => {
+exports.createEvent = (newEventData, req) => {
     let serverErr;
     const vRes = eventSchema.validate(newEventData, {abortEarly: false});
     if(vRes.error) {
         return Promise.reject(vRes.error)
     }
-    return checkPlayerEveble(newEventData.playerId, newEventData.beginTime, newEventData.endTime)
+    return checkPlayerEveble(req, newEventData.playerId, newEventData.beginTime, newEventData.endTime)
         .then(pErr => {
             if(pErr.details) {
                 serverErr = pErr;
             }
-            return checkPlayingFieldEveble(newEventData.playingFieldId, newEventData.beginTime, newEventData.endTime);
+            return checkPlayingFieldEveble(req, newEventData.playingFieldId, newEventData.beginTime, newEventData.endTime);
         })
         .then(pfErr =>{
             if(pfErr.details) {
@@ -119,18 +119,18 @@ exports.createEvent = (newEventData) => {
         });
 };
 
-exports.updateEvent = (eventId, eventData) => {
+exports.updateEvent = (eventId, eventData, req) => {
     let serverErr;
     const vRes = eventSchema.validate(eventData, {abortEarly: false});
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkPlayerEveble(eventData.playerId, eventData.beginTime, eventData.endTime, eventId)
+    return checkPlayerEveble(req, eventData.playerId, eventData.beginTime, eventData.endTime, eventId)
     .then(pErr => {
         if(pErr.details) {
             serverErr = pErr;
         }
-        return checkPlayingFieldEveble(eventData.playingFieldId, eventData.beginTime, eventData.endTime, eventId);
+        return checkPlayingFieldEveble(req, eventData.playingFieldId, eventData.beginTime, eventData.endTime, eventId);
     })
     .then(pfErr =>{
         if(pfErr.details) {
@@ -162,7 +162,7 @@ exports.deleteEvent = (eventId) => {
     return db.promise().execute(sql, [eventId]);
 };
 
-checkPlayingFieldEveble = (pfId, beginTime, endTime, eventId) => {
+checkPlayingFieldEveble = (req, pfId, beginTime, endTime, eventId) => {
     let sql, promise;
     if(eventId){
         sql = `SELECT COUNT(1) as c FROM Event WHERE playing_field_id = ? and ((begin_time BETWEEN ? and ?)
@@ -179,12 +179,13 @@ checkPlayingFieldEveble = (pfId, beginTime, endTime, eventId) => {
     }
     return promise.then((results, fields) => {
         const count = results[0][0].c;
+        const errMessage = req.__('validationMessage.busyPF');
         let err = {};
         if (count > 0 ){
             err = {
                 details: [{
                     path: ['playingFieldId'],
-                    message: 'Obiekt sportowy jest zajety w tych godzinach'
+                    message: errMessage
                 }]
             };
         }
@@ -192,7 +193,7 @@ checkPlayingFieldEveble = (pfId, beginTime, endTime, eventId) => {
     })
 };
 
-checkPlayerEveble = (playerId, beginTime, endTime, eventId) => {
+checkPlayerEveble = (req, playerId, beginTime, endTime, eventId) => {
     let sql, promise;
     if(eventId){
     sql = `SELECT COUNT(1) as c FROM Event WHERE player_id = ? and ((begin_time BETWEEN ? and ?)
@@ -208,12 +209,13 @@ checkPlayerEveble = (playerId, beginTime, endTime, eventId) => {
     }
     return promise.then((results, fields) => {
         const count = results[0][0].c;
+        const errMessage = req.__('validationMessage.busyPlayer');
         let err = {};
         if (count >0 ){
             err = {
                 details: [{
                     path: ['playerId'],
-                    message: 'Gracz jest zajety w tych godzinach'
+                    message: errMessage
                 }]
             };
         }

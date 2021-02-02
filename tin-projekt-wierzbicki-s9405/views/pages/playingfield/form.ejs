@@ -1,9 +1,22 @@
 <%- include('../../fragments/header.ejs') %>
+<script>
+    function showAllert(){
+        if(validateForm()){
+            alert('<%=alertMessage%>')
+        }
+    }
+</script>
     <main>
         <script type="application/javascript" src="/js/validationPlayingField.js"></script>
         <h2><%=pageTitle %></h2>
         <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
             <input type="hidden" name="_id" value="<%= pf._id %>">
+            <div style="display: none">
+                <span id="errorMessage-required"><%= __('validationMessage.fileRequired') %></span>
+                <span id="errorMessage-file-length"><%= __('validationMessage.fileLength') %></span>
+                <span id="errorMessage-cloackroom"><%= __('validationMessage.cloackroom') %></span>
+                <span id="errorMessage-summary"><%= __('validationMessage.summary') %></span>
+            </div>
 
             <label for="name"><%= __('pf.form.fields.name') %><abbr title="required" aria-label="required">*</abbr></label>
             <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
@@ -68,7 +81,7 @@
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
                 <% if (formMode != 'showDetails') { %>
-                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" onclick="return alert('<%=alertMessage%>')" />
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" onclick="showAllert()" />
                     <a class="form-button-cancel" href="/playingfields"><%= __('form.actions.cancel') %></a>
                 <% } else { %>
                     <a class="form-button-cancel" href="/playingfields"><%= __('form.actions.return') %></a>

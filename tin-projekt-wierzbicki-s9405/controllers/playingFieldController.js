@@ -57,7 +57,7 @@ exports.showPlayingFieldDetails = (req, res, next) => {
 
 exports.addPlayingField = (req, res, next) => {
     const pfData = {...req.body};
-    PlayingFieldRepository.createPlayingField(pfData)
+    PlayingFieldRepository.createPlayingField(pfData, req)
         .then( result => {
             res.redirect('/playingfields');
         })
@@ -67,6 +67,7 @@ exports.addPlayingField = (req, res, next) => {
                 pageTitle: req.__('pf.form.add.pageTitle'),
                 formMode: 'createNew',
                 btnLabel: req.__('pf.form.add.btnLabel'),
+                alertMessage: req.__('pf.form.add.alertMessage'),
                 formAction: '/playingfields/add',
                 navLocation: 'playingField',
                 validationErrors: err.details
@@ -77,7 +78,7 @@ exports.addPlayingField = (req, res, next) => {
 exports.updatePlayingField = (req, res, next) => {
     const pfId = req.body._id;
     const pfData = { ...req.body };
-    PlayingFieldRepository.updatePlayingField(pfId, pfData)
+    PlayingFieldRepository.updatePlayingField(pfId, pfData, req)
         .then( result => {
             res.redirect('/playingfields');
         })
@@ -87,6 +88,7 @@ exports.updatePlayingField = (req, res, next) => {
                 formMode: 'edit',
                 pageTitle: req.__('pf.form.edit.pageTitle'),
                 btnLabel: req.__('pf.form.edit.btnLabel'),
+                alertMessage: req.__('pf.form.edit.alertMessage'),
                 formAction: '/playingfields/edit',
                 navLocation: 'playingField',
                 validationErrors: err.details

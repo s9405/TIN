@@ -1,1 +1,189 @@
-{}
+{
+	"main-page": {
+		"content": "Hauptseite"
+	},
+	"login": {
+		"login": "Anmeldung",
+		"email": "Email:",
+		"password": "Passwort:",
+		"button-login": "Einloggen",
+		"button-logout": "Ausloggen",
+		"login-com": "Sie sind angemeldet als: "
+	},
+	"nav": {
+		"main-page": "Hauptseite",
+		"players": "Spieler",
+		"playingFields": "Spielfelder",
+		"events": "Veranstaltungen"
+	},
+	"list": {
+		"actions": {
+			"title": "Aktionen",
+			"details": "Einzelheiten",
+			"edit": "Bearbeiten",
+			"delete": "Löschen"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Rückkehr",
+			"edit": "Bearbeiten",
+			"cancel": "Abbrechen"
+		}
+	},
+	"pf": {
+		"fields": {
+			"name": "Name",
+			"adress": "Ein Kleid",
+			"cloackroom": "Garderobe"
+		},
+		"list": {
+			"title": "Spielfelder",
+			"addNew": "Neues Spielfeld hinzufügen",
+			"noData": "No playing field in database",
+			"pageTitle": "Kein Spielfeld in der Datenbank",
+			"deleteConfirm": "Möchten Sie das Spielfeld löschen?",
+			"deleteAlert": "Spielfeld löschen"
+		},
+		"form": {
+			"event": {
+				"tableName": "Ereignisgeschichte",
+				"playerName": "Spielername",
+				"beginTime": "Start",
+				"endTime": "Ende",
+				"maxNumberOfPlayer": "Anzahl der Spieler"
+			},
+			"fields": {
+				"name": "Name:",
+				"adress": "Ein Kleid:",
+				"cloackroom": "Garderobe:"
+			},
+			"add": {
+				"pageTitle": "Hinzufügen eines neuen Spielfelds",
+				"btnLabel": "Spielfeld hinzufügen",
+				"alertMessage": "Das Spielfeld hinzugefügt"
+			},
+			"edit": {
+				"pageTitle": "Spielfeld bearbeiten",
+				"btnLabel": "Änderungen speichern",
+				"alertMessage": "Das Spielfeld bearbeitet"
+			},
+			"details": "Spielfelddetails",
+			"placeholder": {
+				"name": "2-60 Zeichen",
+				"adress": "2-60 Zeichen",
+				"cloackroom": "0 oder 1"
+			}
+		}
+	},
+	"player": {
+		"fields": {
+			"firstName": "Vorname",
+			"lastName": "Nachname",
+			"email": "Email"
+		},
+		"list": {
+			"title": "Spielerinnen",
+			"addNew": "Neuen Spieler hinzufügen",
+			"noData": "Kein Spieler in der Datenbank",
+			"pageTitle": "Liste der Spieler",
+			"deleteConfirm": "Möchten Sie den Player löschen??",
+			"deleteAlert": "Spieler löschen"
+		},
+		"form": {
+			"event": {
+				"tableName": "Ereignisgeschichte",
+				"pfName": "Name des Spielfelds",
+				"beginTime": "Start",
+				"endTime": "Ende",
+				"maxNumberOfPlayer": "Anzahl der Spieler"
+			},
+			"fields": {
+				"firstName": "Vorname:",
+				"lastName": "Nachname:",
+				"email": "E-mail:",
+				"password": "Passwort:"
+			},
+			"add": {
+				"pageTitle": "Hinzufügen eines neuen Players",
+				"btnLabel": "Fügen Sie den Player hinzu",
+				"alertMessage": "Spieler hinzugefügt"
+			},
+			"edit": {
+				"pageTitle": "Spieler bearbeiten",
+				"btnLabel": "Änderungen speichern",
+				"alertMessage": "Spieler bearbeitet"
+			},
+			"details": "Spielerdetails",
+			"placeholder": {
+				"firstName": "2-20 Zeichen",
+				"lastName": "2-20 Zeichen",
+				"email": "z.B.. name@domain.pl",
+				"password": "min 8 Zeichen"
+			}
+		}
+	},
+	"event": {
+		"fields": {
+			"numberOfPlayer": "Anzahl der Spieler",
+			"beginTime": "Zeit beginnen",
+			"endTime": "Endzeit",
+			"playingField": "Spielfeld",
+			"player": "Spielerin"
+		},
+		"list": {
+			"title": "Veranstaltungen",
+			"addNew": "Neues Ereignis hinzufügen",
+			"pageTitle": "Liste der Ereignisse",
+			"deleteConfirm": "Möchten Sie ein Ereignis löschen?",
+			"deleteAlert": "Ereignis löschen"
+		},
+		"form": {
+			"event": {
+				"tableName": "Ereignisgeschichte",
+				"pfName": "Name des Spielfelds",
+				"beginTime": "Start",
+				"endTime": "Ende",
+				"maxNumberOfPlayer": "Anzahl der Spieler"
+			},
+			"fields": {
+				"player": "Spielerin:",
+				"playingField": "Spielfeld:",
+				"beginTime": "Zeit beginnen:",
+				"endTime": "Endzeit:",
+				"numberOfPlayer": "Anzahl der Spieler:"
+			},
+			"add": {
+				"pageTitle": "Neues Event",
+				"btnLabel": "Fügen Sie das Ereignis hinzu",
+				"alertMessage": "reignis hinzugefügt"
+			},
+			"edit": {
+				"pageTitle": "Ereignis bearbeiten",
+				"btnLabel": "Ereignis bearbeiten",
+				"alertMessage": "Ereignis bearbeitet"
+			},
+			"details": "Veranstaltungsdetails",
+			"select": {
+				"player": "--- Spieler auswählen ---",
+				"playingField": "--- Spielfeld auswählen ---"
+			}
+		}
+	},
+	"validationMessage": {
+		"fileRequired": "Datei erforderlich",
+		"fileLength": "Das Feld sollte 2 bis 20 Zeichen enthalten",
+		"emailLength": "Das Feld sollte 5 bis 60 Zeichen enthalten",
+		"passwordLength": "Das Feld sollte 8 bis 20 Zeichen enthalten",
+		"email": "Falsches E-Mail-Format",
+		"summary": "Formular hat Fehler",
+		"cloackroom": "Das Feld sollte 0 oder 1 enthalten",
+		"numberRange": "Das Feld sollte eine Zahl zwischen 1 und 10 sein",
+		"number": "Das Feld sollte eine Zahl sein",
+		"endTime": "Die Endzeit sollte später als die Anfangszeit sein",
+		"useEmail": "E-Mail wird von einem anderen Spieler verwendet",
+		"useName": "Der Name wird von einem anderen Spielfeld verwendet",
+		"busyPlayer": "Der Spieler ist während dieser Stunden beschäftigt",
+		"busyPF": "Das Spielfeld ist während dieser Stunden besetzt"
+	}
+}

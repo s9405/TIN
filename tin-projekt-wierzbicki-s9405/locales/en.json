@@ -134,7 +134,6 @@
 		"list": {
 			"title": "Events",
 			"addNew": "Add new event",
-			"noData": "No player in database",
 			"pageTitle": "List of events",
 			"deleteConfirm": "Do you want delete event?",
 			"deleteAlert": "Event delete"
@@ -172,6 +171,19 @@
 		}
 	},
 	"validationMessage": {
-		"fileRequired": "validationMessage.fileRequired"
+		"fileRequired": "File required",
+		"fileLength": "The field should contain 2 to 20 characters",
+		"emailLength": "The field should contain 5 to 60 characters",
+		"passwordLength": "The field should contain 8 to 20 characters",
+		"email": "Wrong email format",
+		"summary": "Form has errors",
+		"cloackroom": "The field should contain 0 or 1",
+		"numberRange": "The field should be a number between 1 and 10",
+		"number": "The field should be a number",
+		"endTime": "The end time should be later than the begin time",
+		"useEmail": "Email is use by another player",
+		"useName": "Name is use by another playing field",
+		"busyPlayer": "The player is busy during these hours",
+		"busyPF": "The playing field is busy during these hours"
 	}
 }

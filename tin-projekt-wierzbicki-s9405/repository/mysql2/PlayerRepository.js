@@ -3,7 +3,7 @@ const playerSchema = require('../../model/joi/Player');
 const updatePlayerSchema = require('../../model/joi/UpdatePlayerSchema');
 const authUtil = require('../../util/authUtils');
 
-checkEmailUnique = (email, playerId) => {
+checkEmailUnique = (req, email, playerId) => {
     let sql, promise;
     if (playerId) {
         sql = `SELECT COUNT(1) as c FROM Player where _id !=? and email = ?`;
@@ -14,12 +14,13 @@ checkEmailUnique = (email, playerId) => {
     }
     return promise.then( (results, fields) => {
         const count = results[0][0].c;
+        const errMessage = req.__('validationMessage.useEmail');
         let err = {};
         if (count > 0){
             err = {
                 details: [{
                     path: ['email'],
-                    message: 'Podany adres email jest używany'
+                    message: errMessage
                 }]
             };
         }
@@ -109,12 +110,12 @@ return db.promise().query(query, [playerId])
     });
 };
 
-exports.createPlayer = (newPlayerData) => {
+exports.createPlayer = (newPlayerData, req) => {
     const vRes = playerSchema.validate(newPlayerData, { abortEarly: false} );
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkEmailUnique(newPlayerData.email)
+    return checkEmailUnique(req, newPlayerData.email)
         .then(emailErr => {
             if(emailErr.details) {
                 return Promise.reject(emailErr);
@@ -132,12 +133,12 @@ exports.createPlayer = (newPlayerData) => {
         });
 };
 
-exports.updatePlayer = (playerId, playerData) => {
+exports.updatePlayer = (playerId, playerData, req) => {
     const vRes = updatePlayerSchema.validate(playerData, { abortEarly: false});
     if (vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkEmailUnique(playerData.email, playerId)
+    return checkEmailUnique(req, playerData.email, playerId)
     .then(emailErr => {
         if(emailErr.details){
             return Promise.reject(emailErr);

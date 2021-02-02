@@ -134,7 +134,6 @@
 		"list": {
 			"title": "Eventy",
 			"addNew": "Dodaj nowy event",
-			"noData": "Brak gracza w bazie",
 			"pageTitle": "Lista eventów",
 			"deleteConfirm": "Czy chcesz usunąć event?",
 			"deleteAlert": "Event usunięty"
@@ -172,6 +171,19 @@
 		}
 	},
 	"validationMessage": {
-		"fileRequired": "validationMessage.fileRequired"
+		"fileRequired": "Pole jest wymagane",
+		"fileLength": "Pole powinno zawierać od 2 do 20 znaków",
+		"emailLength": "Pole powinno zawierać od 5 do 60 znaków",
+		"passwordLength": "Pole powinno zawierać od 8 do 20 znaków",
+		"email": "Zły format maila",
+		"summary": "Formularz zawiera błędy",
+		"cloackroom": "Pole powinno zawierać 0 lub 1",
+		"numberRange": "Pole powinno być liczbą w zakresie od 1 do 10",
+		"number": "Pole powinno być liczbą",
+		"endTime": "Czas końca powinna być późniejsza niż czas początku",
+		"useEmail": "Email jest używany przez innego gracza",
+		"useName": "Nazwa jest używana przez inny obiekt sportowy",
+		"busyPlayer": "Gracz jest zajety w tych godzinach",
+		"busyPF": "Obiekt sportowy jest zajety w tych godzinach"
 	}
 }

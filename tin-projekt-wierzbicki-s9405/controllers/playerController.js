@@ -57,7 +57,7 @@ exports.showPlayerDetails = (req, res, next) => {
 
 exports.addPlayer = (req, res, next) => {
     const playerData = {...req.body };
-    PlayerRepository.createPlayer(playerData)
+    PlayerRepository.createPlayer(playerData, req)
         .then( result => {
             res.redirect('/players');
         })
@@ -67,6 +67,7 @@ exports.addPlayer = (req, res, next) => {
                 pageTitle: req.__('player.form.add.pageTitle'),
                 formMode: 'createNew',
                 btnLabel: req.__('player.form.add.btnLabel'),
+                alertMessage: req.__('player.form.add.alertMessage'),
                 formAction: '/players/add',
                 navLocation: 'player',
                 validationErrors: err.details
@@ -77,7 +78,7 @@ exports.addPlayer = (req, res, next) => {
 exports.updatePlayer = (req, res, next) => {
     const playerId = req.body._id
     const playerData = { ...req.body };
-    PlayerRepository.updatePlayer(playerId, playerData)
+    PlayerRepository.updatePlayer(playerId, playerData, req)
         .then( result => {
             res.redirect('/players');
         })
@@ -87,6 +88,7 @@ exports.updatePlayer = (req, res, next) => {
                 formMode: 'edit',
                 pageTitle: req.__('player.form.edit.pageTitle'),
                 btnLabel: req.__('player.form.edit.btnLabel'),
+                alertMessage: req.__('player.form.edit.alertMessage'),
                 formAction: '/players/edit',
                 navLocation: 'player',
                 validationErrors: err.details

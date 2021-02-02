@@ -1,7 +1,7 @@
 const db = require('../../config/mysql2/db');
 const pfSchema = require('../../model/joi/PlayingField');
 
-checkNameUnique = (name, pfId) => {
+checkNameUnique = (req, name, pfId) => {
     let sql, promise;
     if (pfId) {
         sql = `SELECT COUNT(1) as c FROM Playing_field where _id != ? and name = ?`;
@@ -12,12 +12,13 @@ checkNameUnique = (name, pfId) => {
     }
     return promise.then( (results, fields) =>{
         const count = results[0][0].c;
+        const errMessage = req.__('validationMessage.useName');
         let err = {};
         if (count > 0) {
             err = {
                 details: [{
                     path: ['name'],
-                    message: 'Podana nazwa jest używana'
+                    message: errMessage
                 }]
             };
         }
@@ -82,12 +83,12 @@ exports.getPlayingFieldById = (pfId) => {
     });
 };
 
-exports.createPlayingField = (newPlayingFieldData) => {
+exports.createPlayingField = (newPlayingFieldData, req) => {
     const vRes = pfSchema.validate(newPlayingFieldData, {abortEarly: false});
     if(vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkNameUnique(newPlayingFieldData.name)
+    return checkNameUnique(req, newPlayingFieldData.name)
         .then(nameErr => {
             if (nameErr.details) {
                 return Promise.reject(nameErr);
@@ -104,12 +105,12 @@ exports.createPlayingField = (newPlayingFieldData) => {
         });
 };
 
-exports.updatePlayingField = (playingFieldId, playingFieldData) => {
+exports.updatePlayingField = (playingFieldId, playingFieldData, req) => {
     const vRes = pfSchema.validate(playingFieldData, {abortEarly: false});
     if (vRes.error) {
         return Promise.reject(vRes.error);
     }
-    return checkNameUnique(playingFieldData.name, playingFieldId)
+    return checkNameUnique(req, playingFieldData.name, playingFieldId)
         .then(nameErr => {
             if (nameErr.details) {
                 return Promise.reject(nameErr);

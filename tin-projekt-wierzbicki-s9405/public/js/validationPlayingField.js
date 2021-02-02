@@ -8,41 +8,45 @@ function validateForm() {
     const errorAdress = document.getElementById('errorAdress');
     const errorCloackroom = document.getElementById('errorCloackroom');
     const errorsSummary = document.getElementById('errorsSummary');
+    const reqMessage = document.getElementById('errorMessage-required').innerText;
+    const fileLengthMessage = document.getElementById('errorMessage-file-length').innerText;
+    const cloackroomMessage = document.getElementById('errorMessage-cloackroom').innerText;
+    const errorsSummaryMessage = document.getElementById('errorMessage-summary').innerText;
 
     resetErrors([nameInput, adressInput, cloackroomInput], [errorName, errorAdress, errorCloackroom], errorsSummary);
 
     if (!checkRequired(nameInput.value)) {
         valid = false;
         nameInput.classList.add("error-input");
-        errorName.innerText = "Pole jest wymagane";
+        errorName.innerText = reqMessage;
     } else if (!checkTextLengthRange(nameInput.value, 2, 20)) {
         valid = false;
         nameInput.classList.add("error-input");
-        errorName.innerText = "Pole powinno zawierać od 2 do 20 znaków";
+        errorName.innerText = fileLengthMessage;
     }
 
     if (!checkRequired(adressInput.value)) {
         valid = false;
         adressInput.classList.add("error-input");
-        errorAdress.innerText = "Pole jest wymagane";
+        errorAdress.innerText = reqMessage;
     } else if (!checkTextLengthRange(adressInput.value, 2, 20)) {
         valid = false;
         adressInput.classList.add("error-input");
-        errorAdress.innerText = "Pole powinno zawierać od 2 do 20 znaków";
+        errorAdress.innerText = fileLengthMessage;
     }
 
     if (!checkRequired(cloackroomInput.value)) {
         valid = false;
         cloackroomInput.classList.add("error-input");
-        errorCloackroom.innerText = "Pole jest wymagane";
+        errorCloackroom.innerText = reqMessage;
     } else if (!checkCloackroom(cloackroomInput.value)) {
         valid = false;
         cloackroomInput.classList.add("error-input");
-        errorCloackroom.innerText = "Pole powinno zawierać 0 lub 1";
+        errorCloackroom.innerText = cloackroomMessage;
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = errorsSummaryMessage;
     }
     return valid;
 

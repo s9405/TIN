@@ -13,53 +13,59 @@ function validateForm() {
     const errorMaxNumberOfPlayer = document.getElementById('errorMaxNumberOfPlayer');
     const errorsSummary = document.getElementById('errorsSummary');
 
+    const reqMessage = document.getElementById('errorMessage-required').innerText;
+    const numberMessage = document.getElementById('errorMessage-number').innerText;
+    const numberRangeMessage = document.getElementById('errorMessage-number-range').innerText;
+    const endTimeMessage = document.getElementById('errorMessage-end-time').innerText
+    const errorsSummaryMessage = document.getElementById('errorMessage-summary').innerText;
+
     resetErrors([playerInput, playingFieldInput, beginTimeInput, endTimeInput, MaxNumberOfPlayerInput],
         [errorPlayer, errorPlayingField, errorBeginTime, errorEndTime, errorMaxNumberOfPlayer], errorsSummary);
 
     if (!checkRequired(playerInput.value)) {
         valid = false;
         playerInput.classList.add("error-input");
-        errorPlayer.innerText = "Pole jest wymagane";
+        errorPlayer.innerText = reqMessage;
     }
 
     if (!checkRequired(playingFieldInput.value)) {
         valid = false;
         playingFieldInput.classList.add("error-input");
-        errorPlayingField.innerText = "Pole jest wymagane";
+        errorPlayingField.innerText = reqMessage;
     }
 
     if (!checkRequired(MaxNumberOfPlayerInput.value)) {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
-        errorMaxNumberOfPlayer.innerText = "Pole jest wymagane";
+        errorMaxNumberOfPlayer.innerText = reqMessage;
     } else if (!checkNumber(MaxNumberOfPlayerInput.value)) {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
-        errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą";
+        errorMaxNumberOfPlayer.innerText = numberMessage; 
     } else if (!checkNumberRange(MaxNumberOfPlayerInput.value, 1, 10)) {
         valid = false;
         MaxNumberOfPlayerInput.classList.add("error-input");
-        errorMaxNumberOfPlayer.innerText = "Pole powinno być liczbą w zakresie od 1 do 10";
+        errorMaxNumberOfPlayer.innerText = numberRangeMessage;
     }
 
     if (!checkRequired(beginTimeInput.value)) {
         valid = false;
         beginTimeInput.classList.add("error-input");
-        errorBeginTime.innerText = "Pole jest wymagane";
+        errorBeginTime.innerText = reqMessage;
     }
     else if (!checkRequired(endTimeInput.value)) {
         valid = false;
         endTimeInput.classList.add("error-input");
-        errorEndTime.innerText = "Pole jest wymagane";
+        errorEndTime.innerText = reqMessage;
 
     } else if (!checkDateIfAfter(endTimeInput.value, beginTimeInput.value)) {
         valid = false;
         endTimeInput.classList.add("error-input");
-        errorEndTime.innerText = "Data do powinna być późniejsza niż data początku";
+        errorEndTime.innerText = endTimeMessage;
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = errorsSummaryMessage;
     }
     return valid;
 }
